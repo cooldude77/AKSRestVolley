@@ -1,6 +1,5 @@
 package com.instanect.aksrestvolley.newNetwork.specific.authorization;
 
-import com.instanect.aksrestvolley.business.authentication.account.AppAccount;
 import com.instanect.aksrestvolley.newNetwork.common.authorization.AuthorizationHeaderInterface;
 
 /**
@@ -18,9 +17,9 @@ public class AuthorizationHeaderBuilder {
     }
 
     public AuthorizationHeaderInterface getInstanceWithToken(
-            AppAccount appAccount
+            String email, String token
     ) {
-        return new AuthorizationHeader(appAccount.getEmail(), null, appAccount.getAuthToken());
+        return new AuthorizationHeader(email, null, token);
     }
     public AuthorizationHeaderInterface getInstance() {
         return new AuthorizationHeader();

@@ -2,11 +2,11 @@ package com.instanect.aksrestvolley.newNetwork.common.handler.implementations;
 
 import android.net.Uri;
 
-import com.instanect.aksrestvolley.business.declarations.uri.ApiUriDeclarationInterface;
-import com.instanect.aksrestvolley.network.rest.resolver.CurieResolverInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.base.AbstractTravelNodeHandler;
+import com.instanect.aksrestvolley.newNetwork.common.handler.builder.ApiUriDeclarationInterface;
+import com.instanect.aksrestvolley.newNetwork.common.handler.builder.CurieResolverInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.base.AbstractKeyTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;

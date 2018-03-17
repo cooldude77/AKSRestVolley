@@ -1,6 +1,7 @@
 package com.instanect.aksrestvolley.newNetwork.volley.client.di;
 
-import com.instanect.aksrestvolley.network.http.requests.json.UriHttpClientRequestBuilder;
+
+import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientRequestBuilder;
 
 import dagger.Component;
 

@@ -1,7 +1,7 @@
 package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service;
 
-import com.instanect.aksrestvolley.business.declarations.uri.ApiUriDeclaration;
-import com.instanect.aksrestvolley.business.util.LogTagGenerator;
+import com.instanect.aksrestvolley.newNetwork.LogTagGenerator;
+import com.instanect.aksrestvolley.newNetwork.common.handler.builder.ApiUriDeclarationInterface;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.InternetConnectionCheckerInterface;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.executor.ScenarioExecutor;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.executor.builder.ScenarioExecutorBuilder;
@@ -19,7 +19,7 @@ public class ScenarioService
 
     private final ScenarioBuilder scenarioBuilder;
     private final ScenarioExecutorBuilder scenarioExecutorBuilder;
-    private ApiUriDeclaration apiUriDeclaration;
+    private ApiUriDeclarationInterface apiUriDeclarationInterface;
     private InternetConnectionCheckerInterface internetConnectionCheckerInterface;
     private ScenarioInterface scenarioInterface;
     private ScenarioExecutionResponseInterface scenarioExecutionResponseInterface;
@@ -29,11 +29,11 @@ public class ScenarioService
     private ScenarioExecutor scenarioExecutor;
 
     public ScenarioService(
-            ApiUriDeclaration apiUriDeclaration,
+            ApiUriDeclarationInterface apiUriDeclarationInterface,
             ScenarioBuilder scenarioBuilder,
             ScenarioExecutorBuilder scenarioExecutorBuilder,
             InternetConnectionCheckerInterface internetConnectionCheckerInterface) {
-        this.apiUriDeclaration = apiUriDeclaration;
+        this.apiUriDeclarationInterface = apiUriDeclarationInterface;
 
         this.scenarioBuilder = scenarioBuilder;
         this.scenarioExecutorBuilder = scenarioExecutorBuilder;
@@ -47,7 +47,7 @@ public class ScenarioService
         this.scenarioExecutionResponseInterface = scenarioExecutionResponseInterface;
 
         internetConnectionCheckerInterface.checkInternetAvailable(
-                apiUriDeclaration.getInstanectUri(),
+                apiUriDeclarationInterface.getHomeUri(),
                 this
         );
 

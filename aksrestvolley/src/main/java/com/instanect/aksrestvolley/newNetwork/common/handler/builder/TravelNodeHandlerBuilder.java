@@ -1,7 +1,5 @@
 package com.instanect.aksrestvolley.newNetwork.common.handler.builder;
 
-import com.instanect.aksrestvolley.business.declarations.uri.ApiUriDeclarationInterface;
-import com.instanect.aksrestvolley.network.rest.resolver.CurieResolverInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.KeyTravelNodeHandler;
 import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.RootTravelNodeHandler;

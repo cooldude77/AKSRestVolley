@@ -3,7 +3,6 @@ package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.
 import android.net.Uri;
 import android.util.Log;
 
-import com.instanect.aksrestvolley.business.util.LogTagGenerator;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.network.HTTPMethods;
@@ -40,7 +39,7 @@ public class InternetConnectionChecker
 
     @Override
     public void checkInternetAvailable(
-            Uri additionalUriToCheck,
+            String additionalUriToCheck,
             InternetConnectionCheckerResponseInterface internetConnectionCheckerResponseInterface) {
 
         this.additionalUriToCheck = additionalUriToCheck;

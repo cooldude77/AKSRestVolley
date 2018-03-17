@@ -11,7 +11,7 @@ import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.d
 public interface InternetConnectionCheckerInterface {
 
     void checkInternetAvailable(
-            Uri additionalUriToCheck,
+            String additionalUriToCheck,
             InternetConnectionCheckerResponseInterface internetConnectionCheckerResponseInterface);
 
     void tryAbort();

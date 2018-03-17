@@ -2,7 +2,6 @@ package com.instanect.aksrestvolley.newNetwork.common.handler.implementations;
 
 import android.net.Uri;
 
-import com.instanect.aksrestvolley.business.declarations.uri.ApiUriDeclarationInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.base.AbstractTravelNodeHandler;
