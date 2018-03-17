@@ -3,6 +3,7 @@ package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.
 import android.net.Uri;
 import android.util.Log;
 
+import com.instanect.aksrestvolley.newNetwork.LogTagGenerator;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.network.HTTPMethods;
@@ -24,7 +25,7 @@ public class InternetConnectionChecker
 
     private RESTNetworkInterface restNetworkInterface;
 
-    private Uri additionalUriToCheck;
+    private String additionalUriToCheck;
 
     private Uri googleUri = Uri.parse("http://www.google.com");
 
@@ -81,7 +82,7 @@ public class InternetConnectionChecker
                 Log.d(TAG, "Instanect/additional URL check started...");
                 restNetworkInterface.execute(
                         ADDITIONAL_URI_REQUEST_ID,
-                        additionalUriToCheck,
+                        Uri.parse(additionalUriToCheck),
                         HTTPMethods.GET,
                         null,
                         null,
@@ -114,9 +115,6 @@ public class InternetConnectionChecker
         abortExecution = true;
     }
 
-    Uri getAdditionalUriToCheck() {
-        return additionalUriToCheck;
-    }
 
     InternetConnectionCheckerResponseInterface getInternetConnectionCheckerResponseInterface() {
         return internetConnectionCheckerResponseInterface;

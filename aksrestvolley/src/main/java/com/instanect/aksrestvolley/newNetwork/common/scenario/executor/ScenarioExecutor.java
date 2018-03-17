@@ -2,6 +2,7 @@ package com.instanect.aksrestvolley.newNetwork.common.scenario.executor;
 
 import android.util.Log;
 
+import com.instanect.aksrestvolley.newNetwork.LogTagGenerator;
 import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.executor.interfaces.ScenarioExecutionResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.executor.interfaces.ScenarioExecutorInterface;
