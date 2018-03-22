@@ -2,6 +2,7 @@ package com.instanect.aksrestvolley.newNetwork.common.handler.implementations;
 
 import android.net.Uri;
 
+import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.base.AbstractTravelNodeHandler;
@@ -9,7 +10,6 @@ import com.instanect.aksrestvolley.newNetwork.common.handler.builder.ApiUriDecla
 import com.instanect.aksrestvolley.newNetwork.common.handler.builder.CurieResolverInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.base.AbstractKeyTravelNode;
-import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
 
 import org.json.JSONObject;
 
@@ -26,7 +26,7 @@ public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
             ApiUriDeclarationInterface apiUriDeclarationInterface,
             CurieResolverInterface curieResolverInterface,
             AbstractKeyTravelNode abstractKeyTravelNode,
-            NetworkResponse<T> networkResponse,
+            NetworkResponseInterface<T> networkResponse,
             TravelNodeHandlerResponseInterface handlerResponseInterface) {
         super(restNetworkInterface,
                 abstractKeyTravelNode,
@@ -42,7 +42,7 @@ public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
         String key = ((AbstractKeyTravelNode) abstractTravelNode)
                 .getNextIdentifierKey();
 
-        Uri uri = Uri.parse(findUri(networkResponse, key));
+        Uri uri = Uri.parse(findUri(networkResponseInterface, key));
         String query;
         if ((query = abstractTravelNode.getQuery()) != null)
         {
@@ -58,19 +58,19 @@ public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
                 abstractTravelNode.getReturnType());
     }
 
-    private <T> String findUri(
-            NetworkResponse<T> networkResponse,
+    private  String findUri(
+            NetworkResponseInterface networkResponseInterface,
             String key) {
         String uri = null;
         if (key != null)
             uri = apiUriDeclarationInterface.getHomeUri()
                     + curieResolverInterface.getUri(key,
-                    (JSONObject) networkResponse.getResponse());
+                    (JSONObject) this.networkResponseInterface.getResponse());
         return uri;
     }
 
     @Override
-    public <T> void onSuccess(NetworkResponse<T> response, int requestId) {
+    public <T> void onSuccess(NetworkResponseInterface<T> response, int requestId) {
 
         handlerResponseInterface.onSuccess(response);
     }

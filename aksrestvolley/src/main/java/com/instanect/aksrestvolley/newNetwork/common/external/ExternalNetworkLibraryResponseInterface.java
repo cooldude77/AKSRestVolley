@@ -1,6 +1,6 @@
 package com.instanect.aksrestvolley.newNetwork.common.external;
 
-import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
+import com.instanect.accountcommon.network.NetworkResponseInterface;
 
 /**
  * Created by AKS on 10/12/2017.
@@ -8,7 +8,7 @@ import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkRespo
 
 public interface ExternalNetworkLibraryResponseInterface {
 
-    <T> void onSuccess(NetworkResponse<T> networkResponse);
+    <T> void onSuccess(NetworkResponseInterface<T> networkResponse);
 
     void onError(String error, int errorCode);
 }

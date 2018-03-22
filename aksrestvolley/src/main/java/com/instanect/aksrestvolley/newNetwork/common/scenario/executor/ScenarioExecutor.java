@@ -2,8 +2,9 @@ package com.instanect.aksrestvolley.newNetwork.common.scenario.executor;
 
 import android.util.Log;
 
+import com.instanect.accountcommon.network.NetworkResponse;
+import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.LogTagGenerator;
-import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.executor.interfaces.ScenarioExecutionResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.executor.interfaces.ScenarioExecutorInterface;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.interfaces.ScenarioInterface;
@@ -53,7 +54,7 @@ public class ScenarioExecutor
         executeNext(null);
     }
 
-    private void executeNext(NetworkResponse networkResponse) {
+    private void executeNext(NetworkResponseInterface networkResponse) {
 
 
         travelMaps = scenarioInterface.getTravelMapList();
@@ -88,7 +89,7 @@ public class ScenarioExecutor
     }
 
     @Override
-    public <T> void onSuccess(NetworkResponse<T> networkResponse) {
+    public <T> void onSuccess(NetworkResponseInterface<T> networkResponse) {
 
         if (travelMaps.size() == 0)
             scenarioExecutionResponseInterface.onSuccess(networkResponse);

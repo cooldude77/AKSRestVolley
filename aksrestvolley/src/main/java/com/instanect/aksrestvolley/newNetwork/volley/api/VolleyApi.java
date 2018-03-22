@@ -7,12 +7,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.instanect.accountcommon.network.NetworkResponse;
+import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.LogTagGenerator;
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryInterface;
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.network.HTTPMethods;
 import com.instanect.aksrestvolley.newNetwork.common.node.constants.NetworkCallReturnType;
-import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientJsonArrayRequest;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientJsonObjectRequest;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientRequestBuilder;
@@ -192,7 +193,7 @@ public class VolleyApi<T>
             NetworkResponse<T> networkResponse
                     = new NetworkResponse<>();
             networkResponse.setResponse(response);
-            responseInterface.onSuccess(networkResponse);
+            responseInterface.onSuccess((NetworkResponseInterface)networkResponse);
         }
     }
 }

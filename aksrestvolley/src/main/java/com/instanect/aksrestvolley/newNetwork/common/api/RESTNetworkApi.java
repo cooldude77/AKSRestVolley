@@ -2,11 +2,11 @@ package com.instanect.aksrestvolley.newNetwork.common.api;
 
 import android.net.Uri;
 
+import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryInterface;
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryResponseInterface;
-import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
 
 import junit.framework.Assert;
 
@@ -57,7 +57,7 @@ public class RESTNetworkApi implements RESTNetworkInterface,
     }
 
     @Override
-    public <T> void onSuccess(NetworkResponse<T> networkResponse) {
+    public <T> void onSuccess(NetworkResponseInterface<T> networkResponse) {
         Assert.assertNotNull(restNetworkResponseInterface);
         restNetworkResponseInterface.onSuccess(networkResponse, requestId);
 

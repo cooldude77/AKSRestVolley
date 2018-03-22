@@ -1,10 +1,10 @@
 package com.instanect.aksrestvolley.newNetwork.common.traveller;
 
+import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.service.TravelNodeHandlerService;
 import com.instanect.aksrestvolley.newNetwork.common.node.base.AbstractTravelNode;
-import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
 import com.instanect.aksrestvolley.newNetwork.common.traveller.interfaces.TravellerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.traveller.map.TravelMap;
 
@@ -31,7 +31,7 @@ public class Traveller implements
         abortTravel = false;
     }
 
-    public <T> void travel(NetworkResponse<T> networkResponse) {
+    public <T> void travel(NetworkResponseInterface<T> networkResponse) {
 
         if (abortTravel) {
             resetAbortTravelFlag();
@@ -65,7 +65,7 @@ public class Traveller implements
     }
 
     @Override
-    public <T> void onSuccess(NetworkResponse<T> networkResponse) {
+    public <T> void onSuccess(NetworkResponseInterface<T> networkResponse) {
         travel(networkResponse);
     }
 

@@ -1,10 +1,10 @@
 package com.instanect.aksrestvolley.newNetwork.common.handler.service;
 
+import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.builder.TravelNodeHandlerBuilder;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.node.base.AbstractTravelNode;
-import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
 
 /**
  * Connect nodes to handlers
@@ -25,7 +25,7 @@ public class TravelNodeHandlerService {
 
     public <T> TravelNodeHandlerInterface getHandler(
             AbstractTravelNode travelNode,
-            NetworkResponse<T> networkResponse,
+            NetworkResponseInterface<T> networkResponse,
             TravelNodeHandlerResponseInterface travelNodeHandlerResponseInterface) {
 
 

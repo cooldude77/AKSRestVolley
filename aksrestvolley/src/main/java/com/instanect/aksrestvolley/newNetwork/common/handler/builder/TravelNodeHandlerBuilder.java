@@ -1,5 +1,6 @@
 package com.instanect.aksrestvolley.newNetwork.common.handler.builder;
 
+import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.KeyTravelNodeHandler;
 import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.RootTravelNodeHandler;
@@ -8,7 +9,6 @@ import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNo
 import com.instanect.aksrestvolley.newNetwork.common.node.base.AbstractTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.base.AbstractKeyTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.implementations.RootTravelNode;
-import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
 
 /**
  * Builds Node Handlers
@@ -33,7 +33,7 @@ public class TravelNodeHandlerBuilder {
     public <T> TravelNodeHandlerInterface build(
             Class<? extends TravelNodeHandlerInterface> travelNodeHandlerClass,
             AbstractTravelNode travelNode,
-            NetworkResponse<T> networkResponse,
+            NetworkResponseInterface<T> networkResponseInterface,
             TravelNodeHandlerResponseInterface travelNodeHandlerResponseInterface) {
 
         if (travelNodeHandlerClass.equals(RootTravelNodeHandler.class)) {
@@ -42,7 +42,7 @@ public class TravelNodeHandlerBuilder {
                     restNetworkApiInterface,
                     apiUriDeclarationInterface,
                     (RootTravelNode) travelNode,
-                    networkResponse,
+                    networkResponseInterface,
                     travelNodeHandlerResponseInterface);
         } else if (travelNodeHandlerClass.equals(KeyTravelNodeHandler.class)) {
 
@@ -51,7 +51,7 @@ public class TravelNodeHandlerBuilder {
                     apiUriDeclarationInterface,
                     curieResolverInterface,
                     (AbstractKeyTravelNode) travelNode,
-                    networkResponse,
+                    networkResponseInterface,
                     travelNodeHandlerResponseInterface
 
             );

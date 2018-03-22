@@ -1,6 +1,6 @@
 package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.interfaces;
 
-import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
+import com.instanect.accountcommon.network.NetworkResponseInterface;
 
 /**
  * Created by AKS on 10/5/2017.
@@ -8,7 +8,7 @@ import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkRespo
 
 public interface ScenarioResponseInterface {
 
-    <T> void onSuccess(NetworkResponse<T> networkResponse);
+    <T> void onSuccess(NetworkResponseInterface<T> networkResponse);
 
     void onError(String errorMessage, int errorCode);
 }

@@ -1,11 +1,11 @@
 package com.instanect.aksrestvolley.newNetwork.common.handler.base;
 
+import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.builder.ApiUriDeclarationInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.node.base.AbstractTravelNode;
-import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
 
 /**
  * Stores reference to Rest interface
@@ -14,7 +14,7 @@ import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkRespo
 
 abstract public class AbstractTravelNodeHandler implements TravelNodeHandlerInterface {
     protected final AbstractTravelNode abstractTravelNode;
-    protected final NetworkResponse networkResponse;
+    protected final NetworkResponseInterface networkResponseInterface;
     protected final TravelNodeHandlerResponseInterface handlerResponseInterface;
     protected final ApiUriDeclarationInterface apiUriDeclarationInterface;
     protected final RESTNetworkInterface restNetworkInterface;
@@ -23,13 +23,13 @@ abstract public class AbstractTravelNodeHandler implements TravelNodeHandlerInte
     public <T> AbstractTravelNodeHandler(
             RESTNetworkInterface restNetworkInterface,
             AbstractTravelNode abstractTravelNode,
-            NetworkResponse<T> networkResponse,
+            NetworkResponseInterface<T> networkResponseInterface,
             TravelNodeHandlerResponseInterface handlerResponseInterface,
             ApiUriDeclarationInterface apiUriDeclarationInterface) {
 
         this.restNetworkInterface = restNetworkInterface;
         this.abstractTravelNode = abstractTravelNode;
-        this.networkResponse = networkResponse;
+        this.networkResponseInterface = networkResponseInterface;
         this.handlerResponseInterface = handlerResponseInterface;
         this.apiUriDeclarationInterface = apiUriDeclarationInterface;
     }

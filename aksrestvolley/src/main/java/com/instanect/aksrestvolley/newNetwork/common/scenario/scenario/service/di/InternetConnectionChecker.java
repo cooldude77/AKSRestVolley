@@ -3,12 +3,13 @@ package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.
 import android.net.Uri;
 import android.util.Log;
 
+import com.instanect.accountcommon.network.NetworkResponse;
+import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.LogTagGenerator;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.network.HTTPMethods;
 import com.instanect.aksrestvolley.newNetwork.common.node.constants.NetworkCallReturnType;
-import com.instanect.aksrestvolley.newNetwork.common.responseObject.NetworkResponse;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.InternetConnectionCheckerInterface;
 
 /**
@@ -67,7 +68,7 @@ public class InternetConnectionChecker
     }
 
     @Override
-    public <T> void onSuccess(NetworkResponse<T> response, int requestId) {
+    public <T> void onSuccess(NetworkResponseInterface<T> response, int requestId) {
 
         // Google call was successful
         if (requestId == GOOGLE_REQUEST_ID) {

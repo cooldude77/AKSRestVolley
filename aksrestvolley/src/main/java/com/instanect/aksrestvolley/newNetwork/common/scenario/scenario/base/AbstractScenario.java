@@ -1,8 +1,8 @@
 package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.base;
 
+import com.instanect.accountcommon.AuthorizationHeaderInterface;
 import com.instanect.aksrestvolley.newNetwork.common.TravelMapBuilder;
 import com.instanect.aksrestvolley.newNetwork.common.TravelMapListBuilder;
-import com.instanect.aksrestvolley.newNetwork.common.authorization.AuthorizationHeaderInterface;
 import com.instanect.aksrestvolley.newNetwork.common.node.factory.TravelNodeFactory;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.interfaces.ScenarioInterface;
 import com.instanect.aksrestvolley.newNetwork.common.traveller.map.TravelMap;
