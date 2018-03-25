@@ -2,13 +2,13 @@ package com.instanect.aksrestvolley.newNetwork.common.handler.implementations;
 
 import android.net.Uri;
 
-import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.base.AbstractTravelNodeHandler;
 import com.instanect.aksrestvolley.newNetwork.common.handler.builder.ApiUriDeclarationInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.node.implementations.RootTravelNode;
+import com.instanect.networkcommon.NetworkResponseInterface;
 
 /**
  * Created by AKS on 10/4/2017.

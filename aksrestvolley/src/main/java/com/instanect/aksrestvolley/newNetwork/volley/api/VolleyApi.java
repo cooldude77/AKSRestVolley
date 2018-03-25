@@ -7,8 +7,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.instanect.accountcommon.network.NetworkResponse;
-import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.LogTagGenerator;
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryInterface;
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryResponseInterface;
@@ -18,6 +16,8 @@ import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClient
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientJsonObjectRequest;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientRequestBuilder;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientStringRequest;
+import com.instanect.networkcommon.NetworkResponse;
+import com.instanect.networkcommon.NetworkResponseInterface;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

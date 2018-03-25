@@ -1,12 +1,12 @@
 package com.instanect.aksrestvolley.newNetwork.common.traveller;
 
-import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.service.TravelNodeHandlerService;
 import com.instanect.aksrestvolley.newNetwork.common.node.base.AbstractTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.traveller.interfaces.TravellerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.traveller.map.TravelMap;
+import com.instanect.networkcommon.NetworkResponseInterface;
 
 /**
  * Traveller

@@ -1,6 +1,6 @@
 package com.instanect.aksrestvolley.newNetwork.common.scenario.executor.interfaces;
 
-import com.instanect.accountcommon.network.NetworkResponseInterface;
+import com.instanect.networkcommon.NetworkResponseInterface;
 
 /**
  * Created by AKS on 10/5/2017.

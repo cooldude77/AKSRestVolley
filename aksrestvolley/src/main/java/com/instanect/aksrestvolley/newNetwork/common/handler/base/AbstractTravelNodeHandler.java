@@ -1,11 +1,11 @@
 package com.instanect.aksrestvolley.newNetwork.common.handler.base;
 
-import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.builder.ApiUriDeclarationInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.node.base.AbstractTravelNode;
+import com.instanect.networkcommon.NetworkResponseInterface;
 
 /**
  * Stores reference to Rest interface

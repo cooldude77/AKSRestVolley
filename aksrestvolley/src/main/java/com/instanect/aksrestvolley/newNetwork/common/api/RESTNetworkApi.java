@@ -2,11 +2,11 @@ package com.instanect.aksrestvolley.newNetwork.common.api;
 
 import android.net.Uri;
 
-import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryInterface;
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryResponseInterface;
+import com.instanect.networkcommon.NetworkResponseInterface;
 
 import junit.framework.Assert;
 

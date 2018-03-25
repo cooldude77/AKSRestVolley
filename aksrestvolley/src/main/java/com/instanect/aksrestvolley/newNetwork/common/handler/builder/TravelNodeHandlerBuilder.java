@@ -1,6 +1,5 @@
 package com.instanect.aksrestvolley.newNetwork.common.handler.builder;
 
-import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.KeyTravelNodeHandler;
 import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.RootTravelNodeHandler;
@@ -9,6 +8,7 @@ import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNo
 import com.instanect.aksrestvolley.newNetwork.common.node.base.AbstractTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.base.AbstractKeyTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.implementations.RootTravelNode;
+import com.instanect.networkcommon.NetworkResponseInterface;
 
 /**
  * Builds Node Handlers

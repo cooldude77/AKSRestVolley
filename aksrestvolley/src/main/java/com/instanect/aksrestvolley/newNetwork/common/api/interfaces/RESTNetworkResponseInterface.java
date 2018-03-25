@@ -1,6 +1,7 @@
 package com.instanect.aksrestvolley.newNetwork.common.api.interfaces;
 
-import com.instanect.accountcommon.network.NetworkResponseInterface;
+
+import com.instanect.networkcommon.NetworkResponseInterface;
 
 /**
  * Created by AKS on 10/12/2017.

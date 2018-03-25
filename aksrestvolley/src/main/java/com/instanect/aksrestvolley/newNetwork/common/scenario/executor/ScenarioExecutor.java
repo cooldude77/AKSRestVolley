@@ -2,8 +2,6 @@ package com.instanect.aksrestvolley.newNetwork.common.scenario.executor;
 
 import android.util.Log;
 
-import com.instanect.accountcommon.network.NetworkResponse;
-import com.instanect.accountcommon.network.NetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.LogTagGenerator;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.executor.interfaces.ScenarioExecutionResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.executor.interfaces.ScenarioExecutorInterface;
@@ -12,6 +10,7 @@ import com.instanect.aksrestvolley.newNetwork.common.traveller.Traveller;
 import com.instanect.aksrestvolley.newNetwork.common.traveller.builder.TravellerBuilder;
 import com.instanect.aksrestvolley.newNetwork.common.traveller.interfaces.TravellerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.traveller.map.TravelMap;
+import com.instanect.networkcommon.NetworkResponseInterface;
 
 import java.util.LinkedList;
 
