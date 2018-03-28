@@ -18,6 +18,8 @@ import com.instanect.aksrestvolley.newNetwork.volley.request.di.RequestQueueModu
 
 import javax.inject.Inject;
 
+import static junit.framework.Assert.assertNotNull;
+
 /**
  * Created by AKS on 3/27/2018.
  */
@@ -36,5 +38,6 @@ public class AKSRestVolleyActivity extends AppCompatActivity {
 
         DaggerRESTNetworkApiComponent.builder().build();
 
+        assertNotNull(restNetworkApi);
     }
 }

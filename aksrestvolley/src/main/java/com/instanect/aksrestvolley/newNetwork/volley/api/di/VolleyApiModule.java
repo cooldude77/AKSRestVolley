@@ -14,13 +14,15 @@ import dagger.Provides;
 /**
  * Created by AKS on 10/16/2017.
  */
-@Module(includes = {RequestQueueModule.class, UriHttpClientRequestBuilderModule.class})
+@Module(includes = {UriHttpClientRequestBuilderModule.class,
+        RequestQueueModule.class})
 public class VolleyApiModule {
 
     @Provides
-    VolleyApi provideApiModule(RequestQueue requestQueue,
-                               UriHttpClientRequestBuilder uriHttpClientRequestBuilder) {
+    VolleyApi provideApiModule(UriHttpClientRequestBuilder uriHttpClientRequestBuilder,
+                               RequestQueue requestQueue) {
 
         return new VolleyApi(uriHttpClientRequestBuilder, requestQueue);
     }
+
 }

@@ -1,7 +1,9 @@
 package com.instanect.aksrestvolley.newNetwork.common.api.di;
 
+import android.content.Context;
+
 import com.instanect.aksrestvolley.newNetwork.common.api.RESTNetworkApi;
-import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryInterface;
+import com.instanect.aksrestvolley.newNetwork.volley.api.VolleyApi;
 import com.instanect.aksrestvolley.newNetwork.volley.api.di.VolleyApiModule;
 
 import dagger.Module;
@@ -14,11 +16,17 @@ import dagger.Provides;
 @Module(includes = {VolleyApiModule.class})
 public class RESTNetworkApiModule {
 
-    @Provides
-    public RESTNetworkApi provideRESTNetworkApi(
-            ExternalNetworkLibraryInterface externalNetworkLibraryInterface) {
+    private final Context context;
 
-        return new RESTNetworkApi(externalNetworkLibraryInterface);
+    public RESTNetworkApiModule(Context context) {
+
+        this.context = context;
+    }
+
+    @Provides
+    public RESTNetworkApi provideRESTNetworkApi(VolleyApi volleyApi) {
+
+        return new RESTNetworkApi(volleyApi);
     }
 
 

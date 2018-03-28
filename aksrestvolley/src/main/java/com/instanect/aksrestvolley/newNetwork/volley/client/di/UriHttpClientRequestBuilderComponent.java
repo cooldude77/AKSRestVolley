@@ -1,7 +1,7 @@
 package com.instanect.aksrestvolley.newNetwork.volley.client.di;
 
 
-import com.instanect.aksrestvolley.newNetwork.volley.requests.builder.UriHttpClientRequestBuilder;
+import com.instanect.aksrestvolley.newNetwork.volley.api.di.VolleyApiModule;
 
 import dagger.Component;
 
@@ -12,5 +12,5 @@ import dagger.Component;
 @Component(modules = {UriHttpClientRequestBuilderModule.class})
 public interface UriHttpClientRequestBuilderComponent {
 
-    UriHttpClientRequestBuilder getUriHttpClientRequestBuilder();
+    void inject(VolleyApiModule volleyApiModule);
 }

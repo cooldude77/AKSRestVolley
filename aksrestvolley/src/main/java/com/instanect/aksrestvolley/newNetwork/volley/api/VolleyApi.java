@@ -28,7 +28,7 @@ import java.util.HashMap;
  * Created by AKS on 10/12/2017.
  */
 
-public class VolleyApi<T>
+public class VolleyApi
         implements ExternalNetworkLibraryInterface {
 
     private static String TAG = LogTagGenerator.getTag(VolleyApi.class);
