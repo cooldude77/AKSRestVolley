@@ -9,6 +9,4 @@ import dagger.Component;
  */
 @Component(modules = {RequestQueueModule.class})
 public interface RequestQueueComponent {
-
-    RequestQueue getRequestQueue();
 }

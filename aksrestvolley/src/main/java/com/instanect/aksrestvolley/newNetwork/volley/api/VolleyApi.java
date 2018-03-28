@@ -14,7 +14,7 @@ import com.instanect.aksrestvolley.newNetwork.common.network.HTTPMethods;
 import com.instanect.aksrestvolley.newNetwork.common.node.constants.NetworkCallReturnType;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientJsonArrayRequest;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientJsonObjectRequest;
-import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientRequestBuilder;
+import com.instanect.aksrestvolley.newNetwork.volley.requests.builder.UriHttpClientRequestBuilder;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientStringRequest;
 import com.instanect.networkcommon.NetworkResponse;
 import com.instanect.networkcommon.NetworkResponseInterface;

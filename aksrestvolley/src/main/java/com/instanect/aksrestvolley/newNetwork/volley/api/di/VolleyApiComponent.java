@@ -10,12 +10,12 @@ import dagger.Component;
  * Created by AKS on 10/16/2017.
  */
 
-@Component(modules = {VolleyApiModule.class}, dependencies = {
-        UriHttpClientRequestBuilderComponent.class,
-        RequestQueueComponent.class
-})
+@Component(modules = {VolleyApiModule.class},
+        dependencies = {
+                UriHttpClientRequestBuilderComponent.class,
+                RequestQueueComponent.class
+        })
 public interface VolleyApiComponent {
-    VolleyApi getVolleyApi();
 }
 
 

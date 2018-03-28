@@ -3,7 +3,7 @@ package com.instanect.aksrestvolley.newNetwork.volley.client.di;
 import android.content.Context;
 
 
-import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientRequestBuilder;
+import com.instanect.aksrestvolley.newNetwork.volley.requests.builder.UriHttpClientRequestBuilder;
 
 import dagger.Module;
 import dagger.Provides;
