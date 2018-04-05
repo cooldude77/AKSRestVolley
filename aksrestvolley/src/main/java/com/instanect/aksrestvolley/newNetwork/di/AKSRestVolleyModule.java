@@ -1,8 +1,25 @@
 package com.instanect.aksrestvolley.newNetwork.di;
 
 
+import android.content.Context;
+
+import com.instanect.aksrestvolley.newNetwork.common.api.di.RESTNetworkApiModule;
+import com.instanect.aksrestvolley.newNetwork.common.handler.builder.ApiUriDeclarationInterface;
+import com.instanect.aksrestvolley.newNetwork.common.handler.builder.CurieResolverInterface;
+import com.instanect.aksrestvolley.newNetwork.common.handler.builder.di.TravellerNodeHandlerBuilderModule;
+import com.instanect.aksrestvolley.newNetwork.common.handler.service.di.TravelNodeHandlerServiceModule;
+import com.instanect.aksrestvolley.newNetwork.common.scenario.executor.builder.di.ScenarioExecutorBuilderModule;
+import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.builder.di.ScenarioBuilderModule;
+import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.internet.di.InternetConnectionCheckerModule;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.ScenarioService;
+import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.di.DaggerScenarioServiceComponent;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.di.ScenarioServiceModule;
+import com.instanect.aksrestvolley.newNetwork.common.traveller.builder.di.TravellerBuilderModule;
+import com.instanect.aksrestvolley.newNetwork.volley.api.di.VolleyApiModule;
+import com.instanect.aksrestvolley.newNetwork.volley.client.di.UriHttpClientRequestBuilderModule;
+import com.instanect.aksrestvolley.newNetwork.volley.request.di.RequestQueueModule;
+
+import javax.inject.Inject;
 
 import dagger.Module;
 import dagger.Provides;
@@ -10,11 +27,42 @@ import dagger.Provides;
 /**
  * Created by AKS on 3/28/2018.
  */
-@Module(includes = {ScenarioServiceModule.class})
+@Module
 public class AKSRestVolleyModule {
+    @Inject
+    ScenarioService scenarioService;
+    private Context context;
+    private CurieResolverInterface curieResolver;
+    private ApiUriDeclarationInterface apiUriDeclaration;
+
+    public AKSRestVolleyModule(Context context, CurieResolverInterface curieResolver, ApiUriDeclarationInterface apiUriDeclaration) {
+        this.context = context;
+        this.curieResolver = curieResolver;
+        this.apiUriDeclaration = apiUriDeclaration;
+    }
 
     @Provides
-    public NetworkService provideNetworkService(ScenarioService scenarioService) {
+    public NetworkService provideNetworkService() {
+
+        DaggerScenarioServiceComponent.builder()
+                .requestQueueModule(new RequestQueueModule(context))
+                .uriHttpClientRequestBuilderModule(
+                        new UriHttpClientRequestBuilderModule(context))
+                .rESTNetworkApiModule(new RESTNetworkApiModule(context))
+                .volleyApiModule(new VolleyApiModule())
+                .travellerBuilderModule(new TravellerBuilderModule())
+                .travellerNodeHandlerBuilderModule(new TravellerNodeHandlerBuilderModule(
+                        curieResolver,
+                        apiUriDeclaration
+                ))
+                .travelNodeHandlerServiceModule(new TravelNodeHandlerServiceModule())
+                .internetConnectionCheckerModule(
+                        new InternetConnectionCheckerModule(apiUriDeclaration)
+                )
+                .scenarioBuilderModule(new ScenarioBuilderModule())
+                .scenarioServiceModule(new ScenarioServiceModule())
+                .scenarioExecutorBuilderModule(new ScenarioExecutorBuilderModule())
+                .build().inject(this);
 
         return new NetworkService(scenarioService);
     }
