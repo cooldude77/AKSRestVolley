@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 11
-        versionName "0.0.11"
+        versionCode 14
+        versionName "0.0.14"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -39,7 +39,7 @@ ext {
     siteUrl = 'https://github.com/cooldude77/AKSRestVolley'
     gitUrl = 'https://github.com/cooldude77/AKSRestVolley.git'
 
-    libraryVersion = '0.0.11'
+    libraryVersion = '0.0.14'
 
     developerId = 'cooldude77'
     developerName = 'Ashvini'
