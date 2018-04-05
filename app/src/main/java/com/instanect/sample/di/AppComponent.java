@@ -1,7 +1,7 @@
-package com.instanect.aksrestvolley.di;
+package com.instanect.sample.di;
 
-import com.instanect.aksrestvolley.AKSRestVolleyActivity;
 import com.instanect.aksrestvolley.newNetwork.di.AKSRestVolleyModule;
+import com.instanect.sample.AKSRestVolleyActivity;
 
 import dagger.Component;
 

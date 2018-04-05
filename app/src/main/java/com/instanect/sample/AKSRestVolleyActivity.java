@@ -1,12 +1,11 @@
-package com.instanect.aksrestvolley;
+package com.instanect.sample;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.instanect.aksrestvolley.application.MainApplication;
-import com.instanect.aksrestvolley.newNetwork.common.api.di.DaggerRESTNetworkApiComponent;
 import com.instanect.aksrestvolley.newNetwork.di.NetworkService;
+import com.instanect.sample.application.MainApplication;
 
 import javax.inject.Inject;
 
@@ -28,7 +27,6 @@ public class AKSRestVolleyActivity extends AppCompatActivity {
         ((MainApplication) getApplication())
                 .getAppComponent().inject(this);
 
-        DaggerRESTNetworkApiComponent.builder().build();
 
         assertNotNull(networkService);
     }
