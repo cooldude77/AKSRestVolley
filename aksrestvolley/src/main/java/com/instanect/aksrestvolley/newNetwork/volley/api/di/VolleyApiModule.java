@@ -1,7 +1,5 @@
 package com.instanect.aksrestvolley.newNetwork.volley.api.di;
 
-import android.content.Context;
-
 import com.android.volley.RequestQueue;
 import com.instanect.aksrestvolley.newNetwork.volley.api.VolleyApi;
 import com.instanect.aksrestvolley.newNetwork.volley.client.di.UriHttpClientRequestBuilderModule;

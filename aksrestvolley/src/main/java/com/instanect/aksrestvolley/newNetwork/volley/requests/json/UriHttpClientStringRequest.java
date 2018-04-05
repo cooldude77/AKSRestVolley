@@ -49,7 +49,7 @@ public class UriHttpClientStringRequest extends StringRequest {
     }
 
     @Override
-    protected Map<String, String> getParams() throws AuthFailureError {
+    protected Map<String, String> getParams() {
         return postOrPutBody;
     }
 

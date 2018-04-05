@@ -4,7 +4,7 @@ import com.instanect.aksrestvolley.newNetwork.common.scenario.executor.builder.S
 import com.instanect.aksrestvolley.newNetwork.common.scenario.executor.builder.di.ScenarioExecutorBuilderModule;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.builder.ScenarioBuilder;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.builder.di.ScenarioBuilderModule;
-import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.internet.InternetConnectionCheckerInterface;
+import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.internet.di.InternetConnectionCheckerModule;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.internet.interfaces.InternetConnectionChecker;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.ScenarioService;
 
@@ -17,7 +17,7 @@ import dagger.Provides;
 @Module(includes = {
         ScenarioBuilderModule.class,
         ScenarioExecutorBuilderModule.class,
-        InternetConnectionCheckerInterface.class})
+        InternetConnectionCheckerModule.class})
 public class ScenarioServiceModule {
 
 

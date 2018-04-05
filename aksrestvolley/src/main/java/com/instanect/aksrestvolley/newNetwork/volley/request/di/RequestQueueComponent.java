@@ -1,6 +1,5 @@
 package com.instanect.aksrestvolley.newNetwork.volley.request.di;
 
-import com.android.volley.RequestQueue;
 import com.instanect.aksrestvolley.newNetwork.volley.api.di.VolleyApiModule;
 
 import dagger.Component;

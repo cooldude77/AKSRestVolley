@@ -2,7 +2,6 @@ package com.instanect.aksrestvolley.newNetwork.volley.requests;
 
 import android.util.Log;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -76,7 +75,7 @@ public class UriHttpClientJsonArrayRequest extends Request<JSONArray> {
 
 
     @Override
-    public Map<String, String> getHeaders() throws AuthFailureError {
+    public Map<String, String> getHeaders() {
         return headers;
     }
 

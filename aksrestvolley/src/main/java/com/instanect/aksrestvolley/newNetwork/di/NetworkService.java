@@ -4,7 +4,7 @@ import com.instanect.aksrestvolley.newNetwork.common.handler.builder.ApiUriDecla
 import com.instanect.aksrestvolley.newNetwork.common.handler.builder.CurieResolverInterface;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.ScenarioService;
 
-class NetworkService {
+public class NetworkService {
 
     public NetworkService(ScenarioService service,
                           CurieResolverInterface curieResolverInterface,

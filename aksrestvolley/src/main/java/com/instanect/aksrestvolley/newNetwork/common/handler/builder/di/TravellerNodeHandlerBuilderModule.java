@@ -14,11 +14,19 @@ import dagger.Provides;
 @Module
 public class TravellerNodeHandlerBuilderModule {
 
+
+    private RESTNetworkApi restNetwork;
+    private CurieResolverInterface curieResolverInterface;
+    private ApiUriDeclarationInterface apiUriDeclarationInterface;
+
+    public TravellerNodeHandlerBuilderModule(CurieResolverInterface curieResolverInterface, ApiUriDeclarationInterface apiUriDeclarationInterface) {
+        this.curieResolverInterface = curieResolverInterface;
+        this.apiUriDeclarationInterface = apiUriDeclarationInterface;
+    }
+
     @Provides
     TravelNodeHandlerBuilder provideTravelNodeHandlerBuilder(
-            RESTNetworkApi restNetwork,
-            CurieResolverInterface curieResolverInterface,
-            ApiUriDeclarationInterface apiUriDeclarationInterface) {
+            RESTNetworkApi restNetwork) {
         return new TravelNodeHandlerBuilder(
                 restNetwork,
                 curieResolverInterface,

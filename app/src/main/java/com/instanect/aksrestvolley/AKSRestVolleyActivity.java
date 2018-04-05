@@ -5,16 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.instanect.aksrestvolley.application.MainApplication;
-import com.instanect.aksrestvolley.newNetwork.common.api.RESTNetworkApi;
 import com.instanect.aksrestvolley.newNetwork.common.api.di.DaggerRESTNetworkApiComponent;
-import com.instanect.aksrestvolley.newNetwork.volley.api.di.DaggerVolleyApiComponent;
-import com.instanect.aksrestvolley.newNetwork.volley.api.di.VolleyApiComponent;
-import com.instanect.aksrestvolley.newNetwork.volley.client.di.DaggerUriHttpClientRequestBuilderComponent;
-import com.instanect.aksrestvolley.newNetwork.volley.client.di.UriHttpClientRequestBuilderComponent;
-import com.instanect.aksrestvolley.newNetwork.volley.client.di.UriHttpClientRequestBuilderModule;
-import com.instanect.aksrestvolley.newNetwork.volley.request.di.DaggerRequestQueueComponent;
-import com.instanect.aksrestvolley.newNetwork.volley.request.di.RequestQueueComponent;
-import com.instanect.aksrestvolley.newNetwork.volley.request.di.RequestQueueModule;
+import com.instanect.aksrestvolley.newNetwork.di.NetworkService;
 
 import javax.inject.Inject;
 
@@ -27,7 +19,7 @@ import static junit.framework.Assert.assertNotNull;
 public class AKSRestVolleyActivity extends AppCompatActivity {
 
     @Inject
-    RESTNetworkApi restNetworkApi;
+    NetworkService networkService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +30,6 @@ public class AKSRestVolleyActivity extends AppCompatActivity {
 
         DaggerRESTNetworkApiComponent.builder().build();
 
-        assertNotNull(restNetworkApi);
+        assertNotNull(networkService);
     }
 }

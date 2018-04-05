@@ -31,4 +31,26 @@ public class AKSRestVolleyModule {
                 apiUriDeclarationInterface);
     }
 
+    // Do not delete
+
+    /*
+    ScenarioService scenarioService = new ScenarioService(
+            new ScenarioBuilder(),
+            new ScenarioExecutorBuilder(
+                    new TravellerBuilder(
+                            new TravelNodeHandlerService(
+                                    new TravelNodeHandlerBuilder(
+                                            new RESTNetworkApi(new VolleyApi(
+                                                    new UriHttpClientRequestBuilder(context),
+                                                    Volley.newRequestQueue(context)
+                                            ),
+                                                    new CurieResolverInterface(),
+                                                    new ApiUriDeclarationInterface()
+                                            )
+                                    )
+                            )
+                    ),
+                    new InternetConnectionChecker()
+            );
+    */
 }

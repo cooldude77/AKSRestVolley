@@ -12,12 +12,11 @@ import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLib
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.network.HTTPMethods;
 import com.instanect.aksrestvolley.newNetwork.common.node.constants.NetworkCallReturnType;
+import com.instanect.aksrestvolley.newNetwork.volley.requests.builder.UriHttpClientRequestBuilder;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientJsonArrayRequest;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientJsonObjectRequest;
-import com.instanect.aksrestvolley.newNetwork.volley.requests.builder.UriHttpClientRequestBuilder;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientStringRequest;
 import com.instanect.networkcommon.NetworkResponse;
-import com.instanect.networkcommon.NetworkResponseInterface;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -193,7 +192,7 @@ public class VolleyApi
             NetworkResponse<T> networkResponse
                     = new NetworkResponse<>();
             networkResponse.setResponse(response);
-            responseInterface.onSuccess((NetworkResponseInterface)networkResponse);
+            responseInterface.onSuccess(networkResponse);
         }
     }
 }
