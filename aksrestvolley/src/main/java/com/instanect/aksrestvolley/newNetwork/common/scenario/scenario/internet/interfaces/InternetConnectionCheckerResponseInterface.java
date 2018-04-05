@@ -1,4 +1,4 @@
-package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.di;
+package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.internet.interfaces;
 
 /**
  * Created by AKS on 10/16/2017.

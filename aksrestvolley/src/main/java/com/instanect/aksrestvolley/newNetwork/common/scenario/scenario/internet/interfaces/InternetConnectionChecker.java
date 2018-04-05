@@ -1,4 +1,4 @@
-package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.di;
+package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.internet.interfaces;
 
 import android.net.Uri;
 import android.util.Log;
@@ -6,9 +6,10 @@ import android.util.Log;
 import com.instanect.aksrestvolley.newNetwork.LogTagGenerator;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkResponseInterface;
+import com.instanect.aksrestvolley.newNetwork.common.handler.builder.ApiUriDeclarationInterface;
 import com.instanect.aksrestvolley.newNetwork.common.network.HTTPMethods;
 import com.instanect.aksrestvolley.newNetwork.common.node.constants.NetworkCallReturnType;
-import com.instanect.aksrestvolley.newNetwork.common.scenario.InternetConnectionCheckerInterface;
+import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.internet.InternetConnectionCheckerInterface;
 import com.instanect.networkcommon.NetworkResponseInterface;
 
 /**
@@ -24,26 +25,27 @@ public class InternetConnectionChecker
     private String TAG = LogTagGenerator.getTag(InternetConnectionChecker.class);
 
     private RESTNetworkInterface restNetworkInterface;
+    private final ApiUriDeclarationInterface apiUriDeclarationInterface;
 
-    private String additionalUriToCheck;
 
     private Uri googleUri = Uri.parse("http://www.google.com");
 
     private InternetConnectionCheckerResponseInterface internetConnectionCheckerResponseInterface;
     private boolean abortExecution = false;
 
-    public InternetConnectionChecker(RESTNetworkInterface restNetworkInterface) {
+    public InternetConnectionChecker(
+            RESTNetworkInterface restNetworkInterface,
+            ApiUriDeclarationInterface apiUriDeclarationInterface) {
 
         this.restNetworkInterface = restNetworkInterface;
+        this.apiUriDeclarationInterface = apiUriDeclarationInterface;
     }
 
 
     @Override
     public void checkInternetAvailable(
-            String additionalUriToCheck,
             InternetConnectionCheckerResponseInterface internetConnectionCheckerResponseInterface) {
 
-        this.additionalUriToCheck = additionalUriToCheck;
         this.internetConnectionCheckerResponseInterface = internetConnectionCheckerResponseInterface;
 
         restNetworkInterface.setResponseInterface(this);
@@ -82,7 +84,7 @@ public class InternetConnectionChecker
                 Log.d(TAG, "Instanect/additional URL check started...");
                 restNetworkInterface.execute(
                         ADDITIONAL_URI_REQUEST_ID,
-                        Uri.parse(additionalUriToCheck),
+                        Uri.parse(apiUriDeclarationInterface.getAdditionalUri()),
                         HTTPMethods.GET,
                         null,
                         null,
@@ -102,7 +104,7 @@ public class InternetConnectionChecker
             internetConnectionCheckerResponseInterface.onInternetConnectionNotAvailable();
         else if (requestId == ADDITIONAL_URI_REQUEST_ID)
             internetConnectionCheckerResponseInterface.onAdditionalUrlNotAvailable(
-                    additionalUriToCheck.toString() + " " + "is not available");
+                    apiUriDeclarationInterface.getAdditionalUri() + " " + "is not available");
     }
 
     private void resetAbortFlag() {

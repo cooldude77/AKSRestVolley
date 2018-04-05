@@ -6,4 +6,6 @@ package com.instanect.aksrestvolley.newNetwork.common.handler.builder;
 
 public interface ApiUriDeclarationInterface {
     String getHomeUri();
+
+    String getAdditionalUri();
 }
