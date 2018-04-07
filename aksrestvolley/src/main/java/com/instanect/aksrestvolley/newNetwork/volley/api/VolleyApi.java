@@ -60,6 +60,9 @@ public class VolleyApi
         Log.d(TAG, "Using header...");
         if (header != null)
             Log.d(TAG, header.toString());
+        else {
+            Log.d(TAG, "Header is null");
+        }
         if (body != null) {
             Log.d(TAG, "And Body...");
             Log.d(TAG, body.toString());
