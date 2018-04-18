@@ -6,6 +6,7 @@ import android.net.Uri;
 import com.instanect.aksrestvolley.newNetwork.common.node.constants.NetworkCallReturnType;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyGETTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyPOSTTravelNode;
+import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyPUTTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.implementations.RootTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.interfaces.TravelNodeInterface;
 
@@ -24,12 +25,14 @@ public class TravelNodeFactory {
             HashMap<String, String> body,
             int returnType) {
 
-        if (travelNodeClass.equals(RootTravelNode.class)) {
-            return new RootTravelNode(header,uriQuery, NetworkCallReturnType.JSON_OBJECT);
-        } else if (travelNodeClass.equals(KeyGETTravelNode.class)) {
-            return new KeyGETTravelNode(key,uriQuery, header, returnType);
-        } else if (travelNodeClass.equals(KeyPOSTTravelNode.class))
-            return new KeyPOSTTravelNode(key, uriQuery,header, body, returnType);
+        if (travelNodeClass.equals(RootTravelNode.class))
+            return new RootTravelNode(header, uriQuery, NetworkCallReturnType.JSON_OBJECT);
+        else if (travelNodeClass.equals(KeyGETTravelNode.class))
+            return new KeyGETTravelNode(key, uriQuery, header, returnType);
+        else if (travelNodeClass.equals(KeyPOSTTravelNode.class))
+            return new KeyPOSTTravelNode(key, uriQuery, header, body, returnType);
+        else if (travelNodeClass.equals(KeyPUTTravelNode.class))
+            return new KeyPUTTravelNode(key, uriQuery, header, body, returnType);
 
         throw new IllegalArgumentException("No such travel Interface class");
     }

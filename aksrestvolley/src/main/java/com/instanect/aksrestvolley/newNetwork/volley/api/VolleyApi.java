@@ -180,7 +180,14 @@ public class VolleyApi
                 Log.d(TAG, "Error Occurred..");
                 Log.d(TAG, Integer.toString(error.networkResponse.statusCode));
 
+                /*
+                if (error.networkResponse.statusCode == HttpStatus.SC_MOVED_PERMANENTLY
+                    || error.networkResponse.statusCode == HttpStatus.SC_MOVED_TEMPORARILY)
+                {
+                    final String location = error.networkResponse.headers.get("Location");
 
+                }
+                */
                 responseInterface.onError(message, error.networkResponse.statusCode);
             } else
                 responseInterface.onError("Unspecified Error", 500);
