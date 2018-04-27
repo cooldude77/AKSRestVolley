@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 14
-        versionName "0.0.14"
+        versionCode 16
+        versionName "0.0.16"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -39,7 +39,7 @@ ext {
     siteUrl = 'https://github.com/cooldude77/AKSRestVolley'
     gitUrl = 'https://github.com/cooldude77/AKSRestVolley.git'
 
-    libraryVersion = '0.0.14'
+    libraryVersion = '0.0.16'
 
     developerId = 'cooldude77'
     developerName = 'Ashvini'
@@ -63,8 +63,6 @@ dependencies {
     // Dagger
     implementation 'com.google.dagger:dagger:2.12'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.12'
-// https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
-    compile group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
 
     implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'

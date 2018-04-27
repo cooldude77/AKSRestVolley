@@ -21,6 +21,7 @@ import com.instanect.networkcommon.NetworkResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.HttpURLConnection;
 import java.util.HashMap;
 
 /**
@@ -35,6 +36,11 @@ public class VolleyApi
     private ExternalNetworkLibraryResponseInterface responseInterface;
     private RequestQueue requestQueue;
     private UriHttpClientRequestBuilder uriHttpClientRequestBuilder;
+    private Uri uri;
+    private int method;
+    private HashMap<String, String> header;
+    private HashMap<String, String> body;
+    private int returnType;
 
     public VolleyApi(UriHttpClientRequestBuilder uriHttpClientRequestBuilder,
                      RequestQueue requestQueue) {
@@ -53,6 +59,12 @@ public class VolleyApi
                         HashMap<String, String> body,
                         int returnType,
                         final ExternalNetworkLibraryResponseInterface responseInterface) {
+        this.uri = uri;
+        this.method = method;
+        this.header = header;
+        this.body = body;
+        this.returnType = returnType;
+        this.responseInterface = responseInterface;
 
 
         Log.d(TAG, "Starting request...");
@@ -180,15 +192,25 @@ public class VolleyApi
                 Log.d(TAG, "Error Occurred..");
                 Log.d(TAG, Integer.toString(error.networkResponse.statusCode));
 
-                /*
-                if (error.networkResponse.statusCode == HttpStatus.SC_MOVED_PERMANENTLY
-                    || error.networkResponse.statusCode == HttpStatus.SC_MOVED_TEMPORARILY)
-                {
+
+                if (error.networkResponse.statusCode == 307
+                        || error.networkResponse.statusCode == HttpURLConnection.HTTP_MOVED_TEMP
+                        || error.networkResponse.statusCode == 308) {
                     final String location = error.networkResponse.headers.get("Location");
 
-                }
-                */
-                responseInterface.onError(message, error.networkResponse.statusCode);
+                    execute(
+                            Uri.parse(location),
+                            method,
+                            header,
+                            body,
+                            returnType,
+                            responseInterface
+                    );
+
+
+                } else
+
+                    responseInterface.onError(message, error.networkResponse.statusCode);
             } else
                 responseInterface.onError("Unspecified Error", 500);
         }
