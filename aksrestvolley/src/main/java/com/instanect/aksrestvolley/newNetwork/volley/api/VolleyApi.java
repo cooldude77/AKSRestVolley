@@ -169,6 +169,12 @@ public class VolleyApi
         }
     }
 
+    @Override
+    public void tryAbort() {
+        // todo later
+        // requestQueue.cancelAll();
+    }
+
     public void cancelAll() {
         requestQueue.cancelAll(new RequestQueue.RequestFilter() {
             @Override

@@ -24,5 +24,13 @@ public class NetworkService implements NetworkInterface {
             scenarioExecutionResponseInterface) {
 
         scenarioService.execute(scenarioInterface, scenarioExecutionResponseInterface);
+
     }
+
+    @Override
+    public void tryAbort() {
+
+        scenarioService.tryAbort();
+    }
+
 }

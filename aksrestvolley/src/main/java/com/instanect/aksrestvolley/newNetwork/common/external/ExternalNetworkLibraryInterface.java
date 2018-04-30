@@ -15,4 +15,6 @@ public interface ExternalNetworkLibraryInterface {
                  HashMap<String, String> body,
                  int returnType,
                  ExternalNetworkLibraryResponseInterface responseInterface);
+
+    void tryAbort();
 }

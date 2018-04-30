@@ -69,4 +69,8 @@ public class RESTNetworkApi implements RESTNetworkInterface,
         restNetworkResponseInterface.onError(error, errorCode, requestId);
     }
 
+    @Override
+    public void tryAbort() {
+        externalNetworkLibraryInterface.tryAbort();
+    }
 }
