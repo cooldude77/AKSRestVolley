@@ -131,7 +131,8 @@ public class VolleyApi
                         }
                 );
                 if (method == HTTPMethods.POST)
-                    requestArray.post(body, 1);
+                    // changed tries to 0
+                    requestArray.post(body, 0);
                 else if (method == HTTPMethods.PUT)
                     requestArray.put(body, 1);
                 else
