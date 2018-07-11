@@ -12,5 +12,6 @@ import java.util.LinkedList;
 
 public interface ScenarioUrlInterface extends ScenarioInterface {
     void setUri(Uri uri);
+    void getUri(Uri uri);
 }
 
