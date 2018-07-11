@@ -1,10 +1,13 @@
 package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.builder;
 
+import android.net.Uri;
+
 import com.instanect.accountcommon.account.authorization.AuthorizationHeaderInterface;
 import com.instanect.aksrestvolley.newNetwork.common.TravelMapBuilder;
 import com.instanect.aksrestvolley.newNetwork.common.TravelMapListBuilder;
 import com.instanect.aksrestvolley.newNetwork.common.node.factory.TravelNodeFactory;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.interfaces.ScenarioInterface;
+import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.interfaces.ScenarioUrlInterface;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -18,6 +21,7 @@ public class ScenarioBuilder {
     private AuthorizationHeaderInterface authorizationHeaderInterface;
     private HashMap<String, String> postOrPutBody;
     private String query;
+    private Uri uri;
 
     public ScenarioBuilder builder() {
         return this;
@@ -45,8 +49,12 @@ public class ScenarioBuilder {
         return this;
     }
 
+    public ScenarioBuilder setUri(Uri uri) {
+        this.uri = uri;
+        return this;
+    }
 
-    public ScenarioInterface build() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public ScenarioInterface build() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ScenarioBuilderException {
 
         Class[] arguments = new Class[6];
 
@@ -58,7 +66,7 @@ public class ScenarioBuilder {
         arguments[5] = HashMap.class;
 
 
-        return scenarioInterfaceClass.getDeclaredConstructor(arguments)
+        ScenarioInterface scenarioInterface = scenarioInterfaceClass.getDeclaredConstructor(arguments)
                 .newInstance(
                         new TravelMapBuilder(),
                         new TravelNodeFactory(),
@@ -67,5 +75,14 @@ public class ScenarioBuilder {
                         query,
                         postOrPutBody
                 );
+
+        if (uri != null) {
+            if (scenarioInterface instanceof ScenarioUrlInterface)
+                ((ScenarioUrlInterface) scenarioInterface).setUri(uri);
+            else
+                throw new ScenarioBuilderException();
+        }
+        return scenarioInterface;
+
     }
 }
