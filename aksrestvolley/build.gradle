@@ -1,13 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 18
-        versionName "0.0.18"
+        targetSdkVersion 28
+        versionCode 19
+        versionName "0.0.19"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -39,7 +39,7 @@ ext {
     siteUrl = 'https://github.com/cooldude77/AKSRestVolley'
     gitUrl = 'https://github.com/cooldude77/AKSRestVolley.git'
 
-    libraryVersion = '0.0.18'
+    libraryVersion = '0.0.19'
 
     developerId = 'cooldude77'
     developerName = 'Ashvini'
@@ -58,13 +58,13 @@ dependencies {
     // Google //
     // Volley
     implementation 'com.android.volley:volley:1.0.0'
-    implementation 'com.instanect.accountcommon:accountcommon:0.0.15'
+    implementation 'com.instanect.accountcommon:accountcommon:0.0.16'
     implementation 'com.instanect.networkcommon:networkcommon:0.0.5'
     // Dagger
     implementation 'com.google.dagger:dagger:2.12'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.12'
 
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

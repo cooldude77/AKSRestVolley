@@ -7,6 +7,9 @@ import com.instanect.aksrestvolley.newNetwork.common.node.constants.NetworkCallR
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyGETTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyPOSTTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyPUTTravelNode;
+import com.instanect.aksrestvolley.newNetwork.common.node.http.uriNodes.UriGETTravelNode;
+import com.instanect.aksrestvolley.newNetwork.common.node.http.uriNodes.UriPOSTTravelNode;
+import com.instanect.aksrestvolley.newNetwork.common.node.http.uriNodes.UriPUTTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.implementations.RootTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.interfaces.TravelNodeInterface;
 
@@ -33,6 +36,12 @@ public class TravelNodeFactory {
             return new KeyPOSTTravelNode(key, uriQuery, header, body, returnType);
         else if (travelNodeClass.equals(KeyPUTTravelNode.class))
             return new KeyPUTTravelNode(key, uriQuery, header, body, returnType);
+        else if (travelNodeClass.equals(UriGETTravelNode.class))
+            return new UriGETTravelNode(uri, uriQuery, header, returnType);
+        else if (travelNodeClass.equals(UriPUTTravelNode.class))
+            return new UriPUTTravelNode(uri, uriQuery, header, body, returnType);
+        else if (travelNodeClass.equals(UriGETTravelNode.class))
+            return new UriPOSTTravelNode(uri, uriQuery, header, body, returnType);
 
         throw new IllegalArgumentException("No such travel Interface class");
     }

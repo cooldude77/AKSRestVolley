@@ -11,7 +11,7 @@ import java.util.HashMap;
  * Created by AKS on 10/4/2017.
  */
 
-public abstract class UriPUTTravelNode extends AbstractUriTravelNode {
+public  class UriPUTTravelNode extends AbstractUriTravelNode {
     public UriPUTTravelNode(Uri uri,
                             String query,
                             HashMap<String, String> header,
