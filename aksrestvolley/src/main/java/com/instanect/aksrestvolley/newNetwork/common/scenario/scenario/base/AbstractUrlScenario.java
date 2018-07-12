@@ -6,18 +6,15 @@ import com.instanect.accountcommon.account.authorization.AuthorizationHeaderInte
 import com.instanect.aksrestvolley.newNetwork.common.TravelMapBuilder;
 import com.instanect.aksrestvolley.newNetwork.common.TravelMapListBuilder;
 import com.instanect.aksrestvolley.newNetwork.common.node.factory.TravelNodeFactory;
-import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.interfaces.ScenarioInterface;
-import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.interfaces.ScenarioUrlInterface;
-import com.instanect.aksrestvolley.newNetwork.common.traveller.map.TravelMap;
+import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.interfaces.UrlScenarioInterface;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 
 /**
  * Created by AKS on 10/4/2017.
  */
 
-abstract public class AbstractUrlScenario extends AbstractScenario implements ScenarioUrlInterface{
+abstract public class AbstractUrlScenario extends AbstractScenario implements UrlScenarioInterface {
 
 
     private final Uri uri;

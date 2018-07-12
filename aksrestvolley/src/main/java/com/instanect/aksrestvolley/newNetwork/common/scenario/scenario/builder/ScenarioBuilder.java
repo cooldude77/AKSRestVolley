@@ -7,7 +7,7 @@ import com.instanect.aksrestvolley.newNetwork.common.TravelMapBuilder;
 import com.instanect.aksrestvolley.newNetwork.common.TravelMapListBuilder;
 import com.instanect.aksrestvolley.newNetwork.common.node.factory.TravelNodeFactory;
 import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.interfaces.ScenarioInterface;
-import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.interfaces.ScenarioUrlInterface;
+import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.interfaces.UrlScenarioInterface;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -50,11 +50,14 @@ public class ScenarioBuilder {
     }
 
     public ScenarioBuilder setUri(Uri uri) {
+
         this.uri = uri;
         return this;
     }
 
-    public ScenarioInterface build() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ScenarioBuilderException {
+
+    public ScenarioInterface build() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+
 
         Class[] arguments = new Class[6];
 
@@ -66,23 +69,73 @@ public class ScenarioBuilder {
         arguments[5] = HashMap.class;
 
 
-        ScenarioInterface scenarioInterface = scenarioInterfaceClass.getDeclaredConstructor(arguments)
-                .newInstance(
-                        new TravelMapBuilder(),
-                        new TravelNodeFactory(),
-                        new TravelMapListBuilder(),
-                        authorizationHeaderInterface,
-                        query,
-                        postOrPutBody
-                );
+        ScenarioInterface scenarioInterface = null;
+        try {
+            scenarioInterface = scenarioInterfaceClass
+                    .getDeclaredConstructor(arguments)
+                    .newInstance(
+                            new TravelMapBuilder(),
+                            new TravelNodeFactory(),
+                            new TravelMapListBuilder(),
+                            authorizationHeaderInterface,
+                            query,
+                            postOrPutBody
+                    );
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } finally {
 
-        if (uri != null) {
-            if (scenarioInterface instanceof ScenarioUrlInterface)
-                ((ScenarioUrlInterface) scenarioInterface).setUri(uri);
-            else
-                throw new ScenarioBuilderException();
+            if (scenarioInterface == null) {
+
+
+                Class[] argumentsForScenarioUrlInterface = new Class[7];
+
+                argumentsForScenarioUrlInterface[0] = TravelMapBuilder.class;
+                argumentsForScenarioUrlInterface[1] = TravelNodeFactory.class;
+                argumentsForScenarioUrlInterface[2] = TravelMapListBuilder.class;
+                argumentsForScenarioUrlInterface[3] = AuthorizationHeaderInterface.class;
+                argumentsForScenarioUrlInterface[4] = String.class;
+                argumentsForScenarioUrlInterface[5] = HashMap.class;
+                argumentsForScenarioUrlInterface[6] = Uri.class;
+
+                return (UrlScenarioInterface) getScenarioInterfaceClass()
+                        .getDeclaredConstructor(argumentsForScenarioUrlInterface)
+                        .newInstance(
+                                new TravelMapBuilder(),
+                                new TravelNodeFactory(),
+                                new TravelMapListBuilder(),
+                                getAuthorizationHeaderInterface(),
+                                getQuery(),
+                                getPostOrPutBody(),
+                                uri
+                        );
+            }
         }
+
+
         return scenarioInterface;
 
+    }
+
+    public Class<? extends ScenarioInterface> getScenarioInterfaceClass() {
+        return scenarioInterfaceClass;
+    }
+
+    public AuthorizationHeaderInterface getAuthorizationHeaderInterface() {
+        return authorizationHeaderInterface;
+    }
+
+    public HashMap<String, String> getPostOrPutBody() {
+        return postOrPutBody;
+    }
+
+    public String getQuery() {
+        return query;
     }
 }
