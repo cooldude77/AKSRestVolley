@@ -3,10 +3,12 @@ package com.instanect.aksrestvolley.newNetwork.common.handler.builder;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.KeyTravelNodeHandler;
 import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.RootTravelNodeHandler;
+import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.UriTravelNodeHandler;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.node.base.AbstractTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.base.AbstractKeyTravelNode;
+import com.instanect.aksrestvolley.newNetwork.common.node.http.uriNodes.base.AbstractUriTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.implementations.RootTravelNode;
 import com.instanect.networkcommon.NetworkResponseInterface;
 
@@ -37,7 +39,6 @@ public class TravelNodeHandlerBuilder {
             TravelNodeHandlerResponseInterface travelNodeHandlerResponseInterface) {
 
         if (travelNodeHandlerClass.equals(RootTravelNodeHandler.class)) {
-
             return new RootTravelNodeHandler(
                     restNetworkApiInterface,
                     apiUriDeclarationInterface,
@@ -45,16 +46,20 @@ public class TravelNodeHandlerBuilder {
                     networkResponseInterface,
                     travelNodeHandlerResponseInterface);
         } else if (travelNodeHandlerClass.equals(KeyTravelNodeHandler.class)) {
-
             return new KeyTravelNodeHandler(
                     restNetworkApiInterface,
                     apiUriDeclarationInterface,
                     curieResolverInterface,
                     (AbstractKeyTravelNode) travelNode,
                     networkResponseInterface,
-                    travelNodeHandlerResponseInterface
-
-            );
+                    travelNodeHandlerResponseInterface);
+        } else if (travelNodeHandlerClass.equals(UriTravelNodeHandler.class)) {
+            return new UriTravelNodeHandler(
+                    restNetworkApiInterface,
+                    apiUriDeclarationInterface,
+                    (AbstractUriTravelNode) travelNode,
+                    networkResponseInterface,
+                    travelNodeHandlerResponseInterface);
         }
 
         throw new IllegalArgumentException("Handler class unknown");

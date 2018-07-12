@@ -20,12 +20,10 @@ import org.json.JSONObject;
 
 public class UriTravelNodeHandler extends AbstractTravelNodeHandler
         implements RESTNetworkResponseInterface {
-    private final CurieResolverInterface curieResolverInterface;
 
     public <T> UriTravelNodeHandler(
             RESTNetworkInterface restNetworkInterface,
             ApiUriDeclarationInterface apiUriDeclarationInterface,
-            CurieResolverInterface curieResolverInterface,
             AbstractUriTravelNode abstractUriTravelNode,
             NetworkResponseInterface<T> networkResponse,
             TravelNodeHandlerResponseInterface handlerResponseInterface) {
@@ -33,7 +31,6 @@ public class UriTravelNodeHandler extends AbstractTravelNodeHandler
                 abstractUriTravelNode,
                 networkResponse,
                 handlerResponseInterface, apiUriDeclarationInterface);
-        this.curieResolverInterface = curieResolverInterface;
     }
 
     @Override
