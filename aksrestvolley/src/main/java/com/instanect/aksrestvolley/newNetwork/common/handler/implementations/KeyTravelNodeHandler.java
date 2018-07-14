@@ -19,30 +19,32 @@ import org.json.JSONObject;
 
 public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
         implements RESTNetworkResponseInterface {
-    private final CurieResolverInterface curieResolverInterface;
+    private CurieResolverInterface curieResolverInterface;
 
     public <T> KeyTravelNodeHandler(
-            RESTNetworkInterface restNetworkInterface,
+            AbstractKeyTravelNode abstractKeyTravelNode,
             ApiUriDeclarationInterface apiUriDeclarationInterface,
             CurieResolverInterface curieResolverInterface,
-            AbstractKeyTravelNode abstractKeyTravelNode,
             NetworkResponseInterface<T> networkResponse,
+            RESTNetworkInterface restNetworkInterface,
             TravelNodeHandlerResponseInterface handlerResponseInterface) {
-        super(restNetworkInterface,
-                abstractKeyTravelNode,
+        this(abstractKeyTravelNode, apiUriDeclarationInterface,
+                curieResolverInterface,
                 networkResponse,
-                handlerResponseInterface, apiUriDeclarationInterface);
-        this.curieResolverInterface = curieResolverInterface;
+                restNetworkInterface,
+                null,
+                handlerResponseInterface);
     }
 
     public <T> KeyTravelNodeHandler(
-            RESTNetworkInterface restNetworkInterface,
+            AbstractKeyTravelNode abstractKeyTravelNode,
             ApiUriDeclarationInterface apiUriDeclarationInterface,
             CurieResolverInterface curieResolverInterface,
-            AbstractKeyTravelNode abstractKeyTravelNode,
             NetworkResponseInterface<T> networkResponse,
-            TravelNodeHandlerResponseInterface handlerResponseInterface,
-            String tag) {
+            RESTNetworkInterface restNetworkInterface,
+            String tag,
+            TravelNodeHandlerResponseInterface handlerResponseInterface
+            ) {
         super(restNetworkInterface,
                 abstractKeyTravelNode,
                 networkResponse,
@@ -59,7 +61,7 @@ public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
         String key = ((AbstractKeyTravelNode) abstractTravelNode)
                 .getNextIdentifierKey();
 
-        Uri uri = Uri.parse(findUri(networkResponseInterface, key));
+        Uri uri = Uri.parse(findUri( key));
         String query;
         if ((query = abstractTravelNode.getQuery()) != null) {
             String uriString = uri.toString();
@@ -76,7 +78,6 @@ public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
     }
 
     private String findUri(
-            NetworkResponseInterface networkResponseInterface,
             String key) {
         String uri = null;
         if (key != null)

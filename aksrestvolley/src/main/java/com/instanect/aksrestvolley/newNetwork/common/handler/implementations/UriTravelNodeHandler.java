@@ -23,25 +23,30 @@ public class UriTravelNodeHandler extends AbstractTravelNodeHandler
         implements RESTNetworkResponseInterface {
 
     public <T> UriTravelNodeHandler(
-            RESTNetworkInterface restNetworkInterface,
-            ApiUriDeclarationInterface apiUriDeclarationInterface,
             AbstractUriTravelNode abstractUriTravelNode,
+            ApiUriDeclarationInterface apiUriDeclarationInterface,
             NetworkResponseInterface<T> networkResponse,
+            RESTNetworkInterface restNetworkInterface,
             TravelNodeHandlerResponseInterface handlerResponseInterface) {
-        super(restNetworkInterface,
-                abstractUriTravelNode,
+        this(abstractUriTravelNode,
+                apiUriDeclarationInterface,
                 networkResponse,
-                handlerResponseInterface, apiUriDeclarationInterface);
+                restNetworkInterface,
+                null,
+                handlerResponseInterface);
     }
 
-    public <T> UriTravelNodeHandler(RESTNetworkInterface restNetworkInterface,
-                                    AbstractUriTravelNode abstractTravelNode,
-                                    NetworkResponseInterface<T> networkResponseInterface,
-                                    TravelNodeHandlerResponseInterface handlerResponseInterface,
-                                    ApiUriDeclarationInterface apiUriDeclarationInterface) {
-        this(restNetworkInterface, abstractTravelNode,
+    public <T> UriTravelNodeHandler(
+            AbstractUriTravelNode abstractTravelNode,
+            ApiUriDeclarationInterface apiUriDeclarationInterface,
+            NetworkResponseInterface<T> networkResponseInterface,
+            RESTNetworkInterface restNetworkInterface,
+            String tag,
+            TravelNodeHandlerResponseInterface handlerResponseInterface
+    ) {
+        super(restNetworkInterface, abstractTravelNode,
                 networkResponseInterface, handlerResponseInterface, apiUriDeclarationInterface
-                , null);
+                , tag);
     }
 
     public <T> UriTravelNodeHandler(

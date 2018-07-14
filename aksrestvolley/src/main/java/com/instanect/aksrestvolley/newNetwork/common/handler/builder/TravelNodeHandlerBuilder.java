@@ -38,7 +38,8 @@ public class TravelNodeHandlerBuilder {
             NetworkResponseInterface<T> networkResponseInterface,
             TravelNodeHandlerResponseInterface travelNodeHandlerResponseInterface) {
 
-        return build(travelNodeHandlerClass, travelNode, networkResponseInterface, travelNodeHandlerResponseInterface, null);
+        return build(travelNodeHandlerClass, travelNode,
+                networkResponseInterface, travelNodeHandlerResponseInterface, null);
     }
 
     public <T> TravelNodeHandlerInterface build(
@@ -50,21 +51,22 @@ public class TravelNodeHandlerBuilder {
 
         if (travelNodeHandlerClass.equals(RootTravelNodeHandler.class)) {
             return new RootTravelNodeHandler(
-                    restNetworkApiInterface,
                     apiUriDeclarationInterface,
-                    (RootTravelNode) travelNode,
                     networkResponseInterface,
-                    travelNodeHandlerResponseInterface,
-                    tag);
+                    restNetworkApiInterface,
+                    (RootTravelNode) travelNode,
+                    tag,
+                    travelNodeHandlerResponseInterface
+            );
         } else if (travelNodeHandlerClass.equals(KeyTravelNodeHandler.class)) {
             return new KeyTravelNodeHandler(
-                    restNetworkApiInterface,
+                    (AbstractKeyTravelNode) travelNode,
                     apiUriDeclarationInterface,
                     curieResolverInterface,
-                    (AbstractKeyTravelNode) travelNode,
                     networkResponseInterface,
-                    travelNodeHandlerResponseInterface,
-                    tag);
+                    restNetworkApiInterface,
+                    tag, travelNodeHandlerResponseInterface
+            );
         } else if (travelNodeHandlerClass.equals(UriTravelNodeHandler.class)) {
             return new UriTravelNodeHandler(
                     restNetworkApiInterface,

@@ -51,4 +51,8 @@ abstract public class AbstractTravelNodeHandler implements TravelNodeHandlerInte
     public String getTag() {
         return tag;
     }
+
+    public AbstractTravelNode getTravelNode() {
+        return abstractTravelNode;
+    }
 }
