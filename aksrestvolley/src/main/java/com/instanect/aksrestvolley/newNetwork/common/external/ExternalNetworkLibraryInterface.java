@@ -16,5 +16,13 @@ public interface ExternalNetworkLibraryInterface {
                  int returnType,
                  ExternalNetworkLibraryResponseInterface responseInterface);
 
+    void execute(Uri uri,
+                 int method,
+                 HashMap<String, String> header,
+                 HashMap<String, String> body,
+                 int returnType,
+                 ExternalNetworkLibraryResponseInterface responseInterface,
+                 String tag);
+
     void tryAbort();
 }

@@ -38,12 +38,19 @@ public class ScenarioService
 
     public void execute(
             ScenarioInterface scenarioInterface,
-            ScenarioExecutionResponseInterface scenarioExecutionResponseInterface) {
+            ScenarioExecutionResponseInterface scenarioExecutionResponseInterface,
+            String tag) {
         this.scenarioInterface = scenarioInterface;
         this.scenarioExecutionResponseInterface = scenarioExecutionResponseInterface;
 
         internetConnectionCheckerInterface.checkInternetAvailable(this);
 
+    }
+
+    public void execute(
+            ScenarioInterface scenarioInterface,
+            ScenarioExecutionResponseInterface scenarioExecutionResponseInterface) {
+        execute(scenarioInterface, scenarioExecutionResponseInterface,null);
     }
 
     public ScenarioBuilder getScenarioBuilder() {

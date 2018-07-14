@@ -38,6 +38,16 @@ public class TravelNodeHandlerBuilder {
             NetworkResponseInterface<T> networkResponseInterface,
             TravelNodeHandlerResponseInterface travelNodeHandlerResponseInterface) {
 
+        return build(travelNodeHandlerClass, travelNode, networkResponseInterface, travelNodeHandlerResponseInterface, null);
+    }
+
+    public <T> TravelNodeHandlerInterface build(
+            Class<? extends TravelNodeHandlerInterface> travelNodeHandlerClass,
+            AbstractTravelNode travelNode,
+            NetworkResponseInterface<T> networkResponseInterface,
+            TravelNodeHandlerResponseInterface travelNodeHandlerResponseInterface,
+            String tag) {
+
         if (travelNodeHandlerClass.equals(RootTravelNodeHandler.class)) {
             return new RootTravelNodeHandler(
                     restNetworkApiInterface,

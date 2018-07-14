@@ -20,5 +20,14 @@ public interface RESTNetworkInterface extends NetworkInterface{
             HashMap<String, String> body,
             int returnType);
 
+    void execute(
+            int requestId,
+            Uri uri,
+            int method,
+            HashMap<String, String> header,
+            HashMap<String, String> body,
+            int returnType,
+            String tag);
+
     void setResponseInterface(RESTNetworkResponseInterface responseInterface);
 }

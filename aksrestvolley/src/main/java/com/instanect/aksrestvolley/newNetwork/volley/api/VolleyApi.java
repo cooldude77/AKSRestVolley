@@ -32,11 +32,10 @@ public class VolleyApi
         implements ExternalNetworkLibraryInterface {
 
     private static String TAG = LogTagGenerator.getTag(VolleyApi.class);
-    VolleyResponseFromServerHandler volleyResponseFromServerHandler = new VolleyResponseFromServerHandler();
+    private VolleyResponseFromServerHandler volleyResponseFromServerHandler = new VolleyResponseFromServerHandler();
     private ExternalNetworkLibraryResponseInterface responseInterface;
     private RequestQueue requestQueue;
     private UriHttpClientRequestBuilder uriHttpClientRequestBuilder;
-    private Uri uri;
     private int method;
     private HashMap<String, String> header;
     private HashMap<String, String> body;
@@ -52,14 +51,16 @@ public class VolleyApi
         this.responseInterface = responseInterface;
     }
 
+
     @Override
     public void execute(Uri uri,
                         int method,
                         HashMap<String, String> header,
                         HashMap<String, String> body,
                         int returnType,
-                        final ExternalNetworkLibraryResponseInterface responseInterface) {
-        this.uri = uri;
+                        final ExternalNetworkLibraryResponseInterface responseInterface,
+                        String requestTag) {
+
         this.method = method;
         this.header = header;
         this.body = body;
@@ -79,7 +80,11 @@ public class VolleyApi
             Log.d(TAG, "And Body...");
             Log.d(TAG, body.toString());
         }
+        if (requestTag != null) {
+            Log.d(TAG, "And request tag...");
+            Log.d(TAG, requestTag);
 
+        }
         switch (returnType) {
 
             case NetworkCallReturnType.JSON_OBJECT:
@@ -103,6 +108,8 @@ public class VolleyApi
                             }
                         }
                 );
+                if (requestTag != null)
+                    request.setTag(requestTag);
 
                 if (method == HTTPMethods.POST)
                     request.post(body, 1);
@@ -130,6 +137,10 @@ public class VolleyApi
                             }
                         }
                 );
+
+                if (requestTag != null)
+                    requestArray.setTag(requestTag);
+
                 if (method == HTTPMethods.POST)
                     // changed tries to 0
                     requestArray.post(body, 0);
@@ -158,6 +169,11 @@ public class VolleyApi
                             }
                         }
                 );
+
+
+                if (requestTag != null)
+                    stringRequest.setTag(requestTag);
+
                 if (method == HTTPMethods.POST)
                     stringRequest.post(body, 1);
                 else if (method == HTTPMethods.PUT)
@@ -168,6 +184,18 @@ public class VolleyApi
             default:
                 throw new IllegalArgumentException("Wrong network returnType");
         }
+    }
+
+    @Override
+    public void execute(Uri uri,
+                        int method,
+                        HashMap<String, String> header,
+                        HashMap<String, String> body,
+                        int returnType,
+                        final ExternalNetworkLibraryResponseInterface responseInterface) {
+
+        execute(uri, method, header, body, returnType, responseInterface,
+                null);
     }
 
     @Override
@@ -183,6 +211,13 @@ public class VolleyApi
                 return true;
             }
         });
+    }
+
+    public void cancelRequestUsingTag(String tag) {
+
+        if (tag != null)
+            requestQueue.cancelAll(tag);
+
     }
 
     class VolleyResponseFromServerHandler {

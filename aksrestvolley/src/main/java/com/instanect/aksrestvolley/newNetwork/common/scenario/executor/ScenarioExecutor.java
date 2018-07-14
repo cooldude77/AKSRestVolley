@@ -53,7 +53,18 @@ public class ScenarioExecutor
         executeNext(null);
     }
 
+    public void execute(String tag) {
+        resetAbortExecutionFlag();
+        executeNext(null, tag);
+    }
+
     private void executeNext(NetworkResponseInterface networkResponse) {
+
+        executeNext(networkResponse, null);
+
+    }
+
+    private void executeNext(NetworkResponseInterface networkResponse, String tag) {
 
 
         travelMaps = scenarioInterface.getTravelMapList();
@@ -64,7 +75,7 @@ public class ScenarioExecutor
 
         if (!abortExecution) {
             Log.d(TAG, "Scenario Execution Traveller Started...");
-            traveller.travel(networkResponse);
+            traveller.travel(networkResponse, tag);
         } else {
             resetAbortExecutionFlag();
             scenarioExecutionResponseInterface.onScenarioExecutionAbort();

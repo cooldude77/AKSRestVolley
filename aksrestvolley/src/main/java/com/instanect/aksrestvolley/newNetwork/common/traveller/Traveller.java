@@ -33,6 +33,12 @@ public class Traveller implements
 
     public <T> void travel(NetworkResponseInterface<T> networkResponse) {
 
+
+        travel(networkResponse, null);
+    }
+
+    public <T> void travel(NetworkResponseInterface<T> networkResponse, String tag) {
+
         if (abortTravel) {
             resetAbortTravelFlag();
             travellerResponseInterface.onTravellerAbort();
@@ -48,7 +54,9 @@ public class Traveller implements
 
         // get handler
         TravelNodeHandlerInterface travelNodeHandlerInterface
-                = travelNodeHandlerService.getHandler(travelNode, networkResponse, this);
+                = travelNodeHandlerService.getHandler(travelNode,
+                networkResponse, this,
+                tag);
 
         // handle
         travelNodeHandlerInterface.handle();

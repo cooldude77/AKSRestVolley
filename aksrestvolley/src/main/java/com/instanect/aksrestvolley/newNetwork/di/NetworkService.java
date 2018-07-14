@@ -20,10 +20,17 @@ public class NetworkService implements NetworkInterface {
         return scenarioService.getScenarioBuilder();
     }
 
-    public void execute(ScenarioInterface scenarioInterface, ScenarioExecutionResponseInterface
-            scenarioExecutionResponseInterface) {
+    public void execute(ScenarioInterface scenarioInterface,
+                        ScenarioExecutionResponseInterface scenarioExecutionResponseInterface) {
 
         scenarioService.execute(scenarioInterface, scenarioExecutionResponseInterface);
+
+    }
+
+    public void execute(ScenarioInterface scenarioInterface, ScenarioExecutionResponseInterface
+            scenarioExecutionResponseInterface, String tag) {
+
+        scenarioService.execute(scenarioInterface, scenarioExecutionResponseInterface, null);
 
     }
 

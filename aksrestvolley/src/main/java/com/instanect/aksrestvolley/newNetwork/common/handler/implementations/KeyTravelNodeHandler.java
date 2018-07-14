@@ -35,6 +35,23 @@ public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
         this.curieResolverInterface = curieResolverInterface;
     }
 
+    public <T> KeyTravelNodeHandler(
+            RESTNetworkInterface restNetworkInterface,
+            ApiUriDeclarationInterface apiUriDeclarationInterface,
+            CurieResolverInterface curieResolverInterface,
+            AbstractKeyTravelNode abstractKeyTravelNode,
+            NetworkResponseInterface<T> networkResponse,
+            TravelNodeHandlerResponseInterface handlerResponseInterface,
+            String tag) {
+        super(restNetworkInterface,
+                abstractKeyTravelNode,
+                networkResponse,
+                handlerResponseInterface,
+                apiUriDeclarationInterface,
+                tag);
+        this.curieResolverInterface = curieResolverInterface;
+    }
+
     @Override
     public void handle() {
 
@@ -44,10 +61,9 @@ public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
 
         Uri uri = Uri.parse(findUri(networkResponseInterface, key));
         String query;
-        if ((query = abstractTravelNode.getQuery()) != null)
-        {
+        if ((query = abstractTravelNode.getQuery()) != null) {
             String uriString = uri.toString();
-            uri = Uri.parse(uriString+"?"+query);
+            uri = Uri.parse(uriString + "?" + query);
         }
         restNetworkInterface.setResponseInterface(this);
         restNetworkInterface.execute(
@@ -58,7 +74,7 @@ public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
                 abstractTravelNode.getReturnType());
     }
 
-    private  String findUri(
+    private String findUri(
             NetworkResponseInterface networkResponseInterface,
             String key) {
         String uri = null;

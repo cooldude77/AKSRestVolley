@@ -37,6 +37,19 @@ public class RESTNetworkApi implements RESTNetworkInterface,
             HashMap<String, String> header,
             HashMap<String, String> body,
             int returnType) {
+
+        execute(requestId, uri, method, header, body, returnType, null);
+    }
+
+    @Override
+    public void execute(
+            int requestId,
+            Uri uri,
+            int method,
+            HashMap<String, String> header,
+            HashMap<String, String> body,
+            int returnType,
+            String tag) {
         this.requestId = requestId;
 
         externalNetworkLibraryInterface
@@ -46,7 +59,8 @@ public class RESTNetworkApi implements RESTNetworkInterface,
                         header,
                         body,
                         returnType,
-                        this);
+                        this,
+                        tag);
 
     }
 
