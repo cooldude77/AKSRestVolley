@@ -12,6 +12,8 @@ import junit.framework.Assert;
 
 import java.util.HashMap;
 
+import static org.junit.Assert.assertNotNull;
+
 /**
  * Bridge between External library like volley and app rest module
  */
@@ -66,20 +68,20 @@ public class RESTNetworkApi implements RESTNetworkInterface,
 
     @Override
     public void setResponseInterface(RESTNetworkResponseInterface responseInterface) {
-        Assert.assertNotNull(responseInterface);
+        assertNotNull(responseInterface);
         this.restNetworkResponseInterface = responseInterface;
     }
 
     @Override
     public <T> void onSuccess(NetworkResponseInterface<T> networkResponse) {
-        Assert.assertNotNull(restNetworkResponseInterface);
+        assertNotNull(restNetworkResponseInterface);
         restNetworkResponseInterface.onSuccess(networkResponse, requestId);
 
     }
 
     @Override
     public void onError(String error, int errorCode) {
-        Assert.assertNotNull(restNetworkResponseInterface);
+        assertNotNull(restNetworkResponseInterface);
         restNetworkResponseInterface.onError(error, errorCode, requestId);
     }
 
