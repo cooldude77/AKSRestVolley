@@ -1,9 +1,6 @@
 package com.instanect.aksrestvolley.newNetwork.volley.api.di;
 
 import com.instanect.aksrestvolley.newNetwork.volley.client.di.UriHttpClientRequestBuilderComponent;
-import com.instanect.aksrestvolley.newNetwork.volley.request.di.VolleyRequestQueueCompositionWrapperComponent;
-
-import javax.inject.Singleton;
 
 import dagger.Component;
 
@@ -12,8 +9,7 @@ import dagger.Component;
  */
 @Component(modules = {VolleyApiModule.class},
         dependencies = {
-                UriHttpClientRequestBuilderComponent.class,
-                VolleyRequestQueueCompositionWrapperComponent.class
+                UriHttpClientRequestBuilderComponent.class
         })
 public interface VolleyApiComponent {
 }

@@ -3,6 +3,7 @@ package com.instanect.sample.application;
 import android.app.Application;
 
 import com.instanect.aksrestvolley.newNetwork.di.AKSRestVolleyModule;
+import com.instanect.aksrestvolley.newNetwork.volley.request.di.VolleyRequestQueueCompositionWrapper;
 import com.instanect.sample.di.AppComponent;
 import com.instanect.sample.di.DaggerAppComponent;
 
@@ -20,11 +21,17 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        VolleyRequestQueueCompositionWrapper
+                volleyRequestQueueCompositionWrapper =
+                VolleyRequestQueueCompositionWrapper
+                        .getInstance(getApplicationContext());
+
         appComponent = DaggerAppComponent.builder()
                 .aKSRestVolleyModule(new AKSRestVolleyModule(
                         getApplicationContext(),
                         curieResolver,
-                        apiUriDeclaration
+                        apiUriDeclaration,
+                        volleyRequestQueueCompositionWrapper
                 ))
                 .build();
 

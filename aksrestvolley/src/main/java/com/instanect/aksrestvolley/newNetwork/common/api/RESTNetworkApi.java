@@ -8,8 +8,6 @@ import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLib
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryResponseInterface;
 import com.instanect.networkcommon.NetworkResponseInterface;
 
-import junit.framework.Assert;
-
 import java.util.HashMap;
 
 import static org.junit.Assert.assertNotNull;

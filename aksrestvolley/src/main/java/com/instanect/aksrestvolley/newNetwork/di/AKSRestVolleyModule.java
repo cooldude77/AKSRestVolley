@@ -17,7 +17,7 @@ import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.d
 import com.instanect.aksrestvolley.newNetwork.common.traveller.builder.di.TravellerBuilderModule;
 import com.instanect.aksrestvolley.newNetwork.volley.api.di.VolleyApiModule;
 import com.instanect.aksrestvolley.newNetwork.volley.client.di.UriHttpClientRequestBuilderModule;
-import com.instanect.aksrestvolley.newNetwork.volley.request.di.VolleyRequestQueueCompositionWrapperModule;
+import com.instanect.aksrestvolley.newNetwork.volley.request.di.VolleyRequestQueueCompositionWrapper;
 
 import javax.inject.Inject;
 
@@ -34,22 +34,26 @@ public class AKSRestVolleyModule {
     private Context context;
     private CurieResolverInterface curieResolver;
     private ApiUriDeclarationInterface apiUriDeclaration;
+    private VolleyRequestQueueCompositionWrapper compositionWrapper;
 
-    public AKSRestVolleyModule(Context context, CurieResolverInterface curieResolver, ApiUriDeclarationInterface apiUriDeclaration) {
+    public AKSRestVolleyModule(Context context,
+                               CurieResolverInterface curieResolver,
+                               ApiUriDeclarationInterface apiUriDeclaration,
+                               VolleyRequestQueueCompositionWrapper compositionWrapper) {
         this.context = context;
         this.curieResolver = curieResolver;
         this.apiUriDeclaration = apiUriDeclaration;
+        this.compositionWrapper = compositionWrapper;
     }
 
     @Provides
     public NetworkService provideNetworkService() {
 
         DaggerScenarioServiceComponent.builder()
-                .volleyRequestQueueCompositionWrapperModule(new VolleyRequestQueueCompositionWrapperModule(context))
                 .uriHttpClientRequestBuilderModule(
                         new UriHttpClientRequestBuilderModule(context))
-                .rESTNetworkApiModule(new RESTNetworkApiModule(context))
-                .volleyApiModule(new VolleyApiModule())
+                .rESTNetworkApiModule(new RESTNetworkApiModule())
+                .volleyApiModule(new VolleyApiModule(compositionWrapper))
                 .travellerBuilderModule(new TravellerBuilderModule())
                 .travellerNodeHandlerBuilderModule(new TravellerNodeHandlerBuilderModule(
                         curieResolver,
