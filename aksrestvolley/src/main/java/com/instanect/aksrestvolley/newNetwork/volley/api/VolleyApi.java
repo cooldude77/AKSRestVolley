@@ -3,15 +3,16 @@ package com.instanect.aksrestvolley.newNetwork.volley.api;
 import android.net.Uri;
 import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.instanect.aksrestvolley.newNetwork.LogTagGenerator;
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryInterface;
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryResponseInterface;
-import com.instanect.aksrestvolley.newNetwork.common.network.HTTPMethods;
 import com.instanect.aksrestvolley.newNetwork.common.node.constants.NetworkCallReturnType;
+import com.instanect.aksrestvolley.newNetwork.volley.request.di.VolleyRequestQueueCompositionWrapper;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.builder.UriHttpClientRequestBuilder;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientJsonArrayRequest;
 import com.instanect.aksrestvolley.newNetwork.volley.requests.json.UriHttpClientJsonObjectRequest;
@@ -34,7 +35,7 @@ public class VolleyApi
     private static String TAG = LogTagGenerator.getTag(VolleyApi.class);
     private VolleyResponseFromServerHandler volleyResponseFromServerHandler = new VolleyResponseFromServerHandler();
     private ExternalNetworkLibraryResponseInterface responseInterface;
-    private RequestQueue requestQueue;
+    private VolleyRequestQueueCompositionWrapper volleyRequestQueueCompositionWrapper;
     private UriHttpClientRequestBuilder uriHttpClientRequestBuilder;
     private int method;
     private HashMap<String, String> header;
@@ -42,9 +43,9 @@ public class VolleyApi
     private int returnType;
 
     public VolleyApi(UriHttpClientRequestBuilder uriHttpClientRequestBuilder,
-                     RequestQueue requestQueue) {
+                     VolleyRequestQueueCompositionWrapper volleyRequestQueueCompositionWrapper) {
         this.uriHttpClientRequestBuilder = uriHttpClientRequestBuilder;
-        this.requestQueue = requestQueue;
+        this.volleyRequestQueueCompositionWrapper = volleyRequestQueueCompositionWrapper;
     }
 
     public void setResponseInterface(ExternalNetworkLibraryResponseInterface responseInterface) {
@@ -93,6 +94,7 @@ public class VolleyApi
                         method,
                         uri,
                         header,
+                        body,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -111,12 +113,7 @@ public class VolleyApi
                 if (requestTag != null)
                     request.setTag(requestTag);
 
-                if (method == HTTPMethods.POST)
-                    request.post(body, 1);
-                else if (method == HTTPMethods.PUT)
-                    request.put(body, 1);
-                else
-                    request.get(1);
+                process(request);
                 break;
             case NetworkCallReturnType.JSON_ARRAY:
                 UriHttpClientJsonArrayRequest requestArray
@@ -124,6 +121,7 @@ public class VolleyApi
                         method,
                         uri,
                         header,
+                        body,
                         new Response.Listener<JSONArray>() {
                             @Override
                             public void onResponse(JSONArray response) {
@@ -140,14 +138,8 @@ public class VolleyApi
 
                 if (requestTag != null)
                     requestArray.setTag(requestTag);
+                process(requestArray);
 
-                if (method == HTTPMethods.POST)
-                    // changed tries to 0
-                    requestArray.post(body, 0);
-                else if (method == HTTPMethods.PUT)
-                    requestArray.put(body, 1);
-                else
-                    requestArray.get(1);
                 break;
             case NetworkCallReturnType.STRING:
 
@@ -155,6 +147,7 @@ public class VolleyApi
                         = uriHttpClientRequestBuilder.getStringInstance(
                         method,
                         uri,
+                        body,
                         header,
                         new Response.Listener<String>() {
                             @Override
@@ -174,17 +167,13 @@ public class VolleyApi
                 if (requestTag != null)
                     stringRequest.setTag(requestTag);
 
-                if (method == HTTPMethods.POST)
-                    stringRequest.post(body, 1);
-                else if (method == HTTPMethods.PUT)
-                    stringRequest.put(body, 1);
-                else
-                    stringRequest.get(1);
+                process(stringRequest);
                 break;
             default:
                 throw new IllegalArgumentException("Wrong network returnType");
         }
     }
+
 
     @Override
     public void execute(Uri uri,
@@ -201,24 +190,9 @@ public class VolleyApi
     @Override
     public void tryAbort() {
         // todo later
-        // requestQueue.cancelAll();
+        // volleyRequestQueueCompositionWrapper.cancelAll();
     }
 
-    public void cancelAll() {
-        requestQueue.cancelAll(new RequestQueue.RequestFilter() {
-            @Override
-            public boolean apply(Request<?> request) {
-                return true;
-            }
-        });
-    }
-
-    public void cancelRequestUsingTag(String tag) {
-
-        if (tag != null)
-            requestQueue.cancelAll(tag);
-
-    }
 
     class VolleyResponseFromServerHandler {
 
@@ -269,4 +243,18 @@ public class VolleyApi
             responseInterface.onSuccess(networkResponse);
         }
     }
+
+
+    private <T> void process(Request<T> request) {
+        int noOfTries = DefaultRetryPolicy.DEFAULT_MAX_RETRIES;
+
+        int socketTimeout = 30000;//30 seconds - change to what you want
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
+                noOfTries,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        );
+        request.setRetryPolicy(policy);
+        volleyRequestQueueCompositionWrapper.getRequestQueue().add(request);
+    }
+
 }

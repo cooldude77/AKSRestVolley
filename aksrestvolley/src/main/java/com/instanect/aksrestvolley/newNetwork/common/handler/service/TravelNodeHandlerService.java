@@ -50,7 +50,8 @@ public class TravelNodeHandlerService {
         return handlerBuilder.build(classHandler,
                 travelNode,
                 networkResponse,
-                travelNodeHandlerResponseInterface);
+                travelNodeHandlerResponseInterface,
+                tag);
 
 
     }

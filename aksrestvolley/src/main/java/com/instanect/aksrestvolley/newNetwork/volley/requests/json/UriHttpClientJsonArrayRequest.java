@@ -26,6 +26,7 @@ import java.util.Map;
  */
 
 public class UriHttpClientJsonArrayRequest extends Request<JSONArray> {
+    private final HashMap<String, String> body;
     private final Response.Listener<JSONArray> listener;
     private final Response.ErrorListener errorListener;
     private final Context context;
@@ -37,10 +38,12 @@ public class UriHttpClientJsonArrayRequest extends Request<JSONArray> {
                                          int method,
                                          String uri,// in case of GET, pass the parameters attached in the URL itself
                                          HashMap<String, String> headers,
+                                         HashMap<String, String> body,
                                          Response.Listener<JSONArray> listener,
                                          Response.ErrorListener errorListener
     ) {
         super(method, uri, errorListener);
+        this.body = body;
         this.listener = listener;
         this.context = context;
         this.headers = headers;
@@ -83,39 +86,6 @@ public class UriHttpClientJsonArrayRequest extends Request<JSONArray> {
     @Override
     public Map<String, String> getParams() {
         return postOrPutBody;
-    }
-
-    public void post(HashMap<String, String> postBody, Integer noOfTries) {
-
-        this.postOrPutBody = postBody;
-        process(noOfTries);
-    }
-
-    public void put(HashMap<String, String> putBody, Integer noOfTries) {
-
-        this.postOrPutBody = putBody;
-        process(noOfTries);
-    }
-
-    public void get(Integer noOfTries) {
-        Log.d("Instanect-Debug:", getUrl());
-        if (headers != null)
-            Log.d("Instanect-Debug", this.headers.toString());
-        process(noOfTries);
-    }
-
-    private void process(Integer noOfTries) {
-        // if (noOfTries == null) {
-        noOfTries = DefaultRetryPolicy.DEFAULT_MAX_RETRIES;
-        //}
-        int socketTimeout = 30000;//30 seconds - change to what you want
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
-                noOfTries,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        );
-        this.setRetryPolicy(policy);
-        RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(this);
     }
 }
 

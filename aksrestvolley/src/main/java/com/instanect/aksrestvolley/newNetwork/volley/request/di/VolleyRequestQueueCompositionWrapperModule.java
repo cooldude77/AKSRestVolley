@@ -5,6 +5,8 @@ import android.content.Context;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -13,18 +15,19 @@ import dagger.Provides;
  */
 
 @Module
-public class RequestQueueModule {
+public class VolleyRequestQueueCompositionWrapperModule {
 
     private Context context;
 
-    public RequestQueueModule(Context context) {
+    public VolleyRequestQueueCompositionWrapperModule(Context context) {
 
         this.context = context;
     }
 
     @Provides
-    public RequestQueue provideRequestQueue() {
-        return Volley.newRequestQueue(context);
+    public VolleyRequestQueueCompositionWrapper provideRequestQueue() {
+        return
+                new VolleyRequestQueueCompositionWrapper(Volley.newRequestQueue(context));
     }
 
 }

@@ -31,6 +31,7 @@ public class UriHttpClientRequestBuilder {
             int method,
             Uri uri,
             HashMap<String, String> headers,
+            HashMap<String, String> body,
             Response.Listener<JSONObject> listener,
             Response.ErrorListener errorListener
     ) {
@@ -40,6 +41,7 @@ public class UriHttpClientRequestBuilder {
                 method,
                 uri.toString(),
                 headers,
+                body,
                 listener,
                 errorListener
         );
@@ -49,6 +51,7 @@ public class UriHttpClientRequestBuilder {
             int method,
             Uri uri,
             HashMap<String, String> headers,
+            HashMap<String, String> body,
             Response.Listener<JSONArray> listener,
             Response.ErrorListener errorListener
     ) {
@@ -58,6 +61,7 @@ public class UriHttpClientRequestBuilder {
                 method,
                 uri.toString(),
                 headers,
+                body,
                 listener,
                 errorListener
         );
@@ -67,6 +71,7 @@ public class UriHttpClientRequestBuilder {
             int method,
             Uri uri,
             HashMap<String, String> headers,
+            HashMap<String, String> body,
             Response.Listener<String> listener,
             Response.ErrorListener errorListener
     ) {
@@ -76,6 +81,7 @@ public class UriHttpClientRequestBuilder {
                 method,
                 uri.toString(),
                 headers,
+                body,
                 listener,
                 errorListener
         );
