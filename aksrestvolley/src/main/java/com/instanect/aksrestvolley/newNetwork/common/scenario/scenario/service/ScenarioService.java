@@ -21,6 +21,7 @@ public class ScenarioService
     private InternetConnectionCheckerInterface internetConnectionCheckerInterface;
     private ScenarioInterface scenarioInterface;
     private ScenarioExecutionResponseInterface scenarioExecutionResponseInterface;
+    private String tag;
     private boolean abortExecution = false;
 
     private String TAG = LogTagGenerator.getTag(ScenarioService.class);
@@ -42,6 +43,7 @@ public class ScenarioService
             String tag) {
         this.scenarioInterface = scenarioInterface;
         this.scenarioExecutionResponseInterface = scenarioExecutionResponseInterface;
+        this.tag = tag;
 
         internetConnectionCheckerInterface.checkInternetAvailable(this);
 
@@ -75,7 +77,7 @@ public class ScenarioService
 
         scenarioExecutor = scenarioExecutorBuilder
                 .getInstance(scenarioInterface, scenarioExecutionResponseInterface);
-        scenarioExecutor.execute();
+        scenarioExecutor.execute(tag);
 
     }
 

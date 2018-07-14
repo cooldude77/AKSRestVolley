@@ -48,5 +48,7 @@ abstract public class AbstractTravelNodeHandler implements TravelNodeHandlerInte
         this.tag = tag;
     }
 
-
+    public String getTag() {
+        return tag;
+    }
 }

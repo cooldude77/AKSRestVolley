@@ -54,7 +54,8 @@ public class TravelNodeHandlerBuilder {
                     apiUriDeclarationInterface,
                     (RootTravelNode) travelNode,
                     networkResponseInterface,
-                    travelNodeHandlerResponseInterface);
+                    travelNodeHandlerResponseInterface,
+                    tag);
         } else if (travelNodeHandlerClass.equals(KeyTravelNodeHandler.class)) {
             return new KeyTravelNodeHandler(
                     restNetworkApiInterface,
@@ -62,14 +63,16 @@ public class TravelNodeHandlerBuilder {
                     curieResolverInterface,
                     (AbstractKeyTravelNode) travelNode,
                     networkResponseInterface,
-                    travelNodeHandlerResponseInterface);
+                    travelNodeHandlerResponseInterface,
+                    tag);
         } else if (travelNodeHandlerClass.equals(UriTravelNodeHandler.class)) {
             return new UriTravelNodeHandler(
                     restNetworkApiInterface,
-                    apiUriDeclarationInterface,
                     (AbstractUriTravelNode) travelNode,
                     networkResponseInterface,
-                    travelNodeHandlerResponseInterface);
+                    travelNodeHandlerResponseInterface,
+                    apiUriDeclarationInterface,
+                    tag);
         }
 
         throw new IllegalArgumentException("Handler class unknown");

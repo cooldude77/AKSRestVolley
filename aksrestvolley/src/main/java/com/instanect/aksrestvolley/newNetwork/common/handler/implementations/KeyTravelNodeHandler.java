@@ -71,7 +71,8 @@ public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
                 abstractTravelNode.getMethod(),
                 abstractTravelNode.getHeader(),
                 abstractTravelNode.getBody(),
-                abstractTravelNode.getReturnType());
+                abstractTravelNode.getReturnType(),
+                getTag());
     }
 
     private String findUri(

@@ -8,6 +8,7 @@ import com.instanect.aksrestvolley.newNetwork.common.handler.base.AbstractTravel
 import com.instanect.aksrestvolley.newNetwork.common.handler.builder.ApiUriDeclarationInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.builder.CurieResolverInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerResponseInterface;
+import com.instanect.aksrestvolley.newNetwork.common.node.base.AbstractTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.base.AbstractKeyTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.uriNodes.base.AbstractUriTravelNode;
 import com.instanect.networkcommon.NetworkResponseInterface;
@@ -33,6 +34,28 @@ public class UriTravelNodeHandler extends AbstractTravelNodeHandler
                 handlerResponseInterface, apiUriDeclarationInterface);
     }
 
+    public <T> UriTravelNodeHandler(RESTNetworkInterface restNetworkInterface,
+                                    AbstractUriTravelNode abstractTravelNode,
+                                    NetworkResponseInterface<T> networkResponseInterface,
+                                    TravelNodeHandlerResponseInterface handlerResponseInterface,
+                                    ApiUriDeclarationInterface apiUriDeclarationInterface) {
+        this(restNetworkInterface, abstractTravelNode,
+                networkResponseInterface, handlerResponseInterface, apiUriDeclarationInterface
+                , null);
+    }
+
+    public <T> UriTravelNodeHandler(
+            RESTNetworkInterface restNetworkApiInterface,
+            AbstractUriTravelNode travelNode,
+            NetworkResponseInterface<T> networkResponseInterface,
+            TravelNodeHandlerResponseInterface travelNodeHandlerResponseInterface,
+            ApiUriDeclarationInterface apiUriDeclarationInterface,
+            String tag) {
+        super(restNetworkApiInterface, travelNode,
+                networkResponseInterface, travelNodeHandlerResponseInterface,
+                apiUriDeclarationInterface, tag);
+    }
+
     @Override
     public void handle() {
 
@@ -48,7 +71,8 @@ public class UriTravelNodeHandler extends AbstractTravelNodeHandler
                 abstractTravelNode.getMethod(),
                 abstractTravelNode.getHeader(),
                 abstractTravelNode.getBody(),
-                abstractTravelNode.getReturnType());
+                abstractTravelNode.getReturnType(),
+                getTag());
     }
 
     @Override

@@ -67,8 +67,10 @@ public class AKSRestVolleyModule {
                 .scenarioServiceModule(new ScenarioServiceModule())
                 .scenarioExecutorBuilderModule(new ScenarioExecutorBuilderModule())
                 .build().inject(this);
-
-        return new NetworkService(scenarioService);
+        if (compositionWrapper != null)
+            return new NetworkService(scenarioService, compositionWrapper);
+        else
+            return new NetworkService(scenarioService);
     }
 
     // Do not delete

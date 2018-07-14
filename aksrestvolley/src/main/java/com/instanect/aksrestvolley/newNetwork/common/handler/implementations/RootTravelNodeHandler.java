@@ -19,7 +19,7 @@ public class RootTravelNodeHandler
         implements RESTNetworkResponseInterface {
 
 
-    private final RootTravelNode rootTravelNode;
+    private RootTravelNode rootTravelNode;
 
     public <T> RootTravelNodeHandler(
             RESTNetworkInterface restNetworkInterface,
@@ -36,6 +36,19 @@ public class RootTravelNodeHandler
         this.rootTravelNode = rootTravelNode;
     }
 
+    public <T> RootTravelNodeHandler(
+            RESTNetworkInterface restNetworkApiInterface,
+            ApiUriDeclarationInterface apiUriDeclarationInterface,
+            RootTravelNode travelNode,
+            NetworkResponseInterface<T> networkResponseInterface,
+            TravelNodeHandlerResponseInterface travelNodeHandlerResponseInterface,
+            String tag) {
+        super(restNetworkApiInterface,
+                travelNode, networkResponseInterface,
+                travelNodeHandlerResponseInterface,
+                apiUriDeclarationInterface, tag);
+    }
+
 
     @Override
     public <T> void handle() {
@@ -48,7 +61,8 @@ public class RootTravelNodeHandler
                 rootTravelNode.getMethod(),
                 rootTravelNode.getHeader(),
                 null,
-                rootTravelNode.getReturnType()
+                rootTravelNode.getReturnType(),
+                getTag()
         );
 
     }

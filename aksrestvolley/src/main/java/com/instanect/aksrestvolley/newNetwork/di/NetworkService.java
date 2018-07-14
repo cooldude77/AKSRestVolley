@@ -40,7 +40,7 @@ public class NetworkService implements NetworkInterface {
     public void execute(ScenarioInterface scenarioInterface, ScenarioExecutionResponseInterface
             scenarioExecutionResponseInterface, String tag) {
 
-        scenarioService.execute(scenarioInterface, scenarioExecutionResponseInterface, null);
+        scenarioService.execute(scenarioInterface, scenarioExecutionResponseInterface, tag);
 
     }
 
