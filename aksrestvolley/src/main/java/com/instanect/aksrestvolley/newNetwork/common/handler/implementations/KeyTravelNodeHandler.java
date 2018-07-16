@@ -1,12 +1,15 @@
 package com.instanect.aksrestvolley.newNetwork.common.handler.implementations;
 
 import android.net.Uri;
+import android.util.Log;
 
+import com.instanect.aksrestvolley.newNetwork.LogTagGenerator;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkInterface;
 import com.instanect.aksrestvolley.newNetwork.common.api.interfaces.RESTNetworkResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.base.AbstractTravelNodeHandler;
 import com.instanect.aksrestvolley.newNetwork.common.handler.builder.ApiUriDeclarationInterface;
 import com.instanect.aksrestvolley.newNetwork.common.handler.builder.CurieResolverInterface;
+import com.instanect.aksrestvolley.newNetwork.common.handler.builder.CurieResolverKeyNotFoundException;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerResponseInterface;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.base.AbstractKeyTravelNode;
 import com.instanect.networkcommon.NetworkResponseInterface;
@@ -20,6 +23,7 @@ import org.json.JSONObject;
 public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
         implements RESTNetworkResponseInterface {
     private CurieResolverInterface curieResolverInterface;
+    private String TAG = LogTagGenerator.getTag(KeyTravelNodeHandler.class);
 
     public <T> KeyTravelNodeHandler(
             AbstractKeyTravelNode abstractKeyTravelNode,
@@ -44,7 +48,7 @@ public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
             RESTNetworkInterface restNetworkInterface,
             String tag,
             TravelNodeHandlerResponseInterface handlerResponseInterface
-            ) {
+    ) {
         super(restNetworkInterface,
                 abstractKeyTravelNode,
                 networkResponse,
@@ -61,24 +65,30 @@ public class KeyTravelNodeHandler extends AbstractTravelNodeHandler
         String key = ((AbstractKeyTravelNode) abstractTravelNode)
                 .getNextIdentifierKey();
 
-        Uri uri = Uri.parse(findUri( key));
-        String query;
-        if ((query = abstractTravelNode.getQuery()) != null) {
-            String uriString = uri.toString();
-            uri = Uri.parse(uriString + "?" + query);
+        Uri uri = null;
+        try {
+            uri = Uri.parse(findUri(key));
+            String query;
+            if ((query = abstractTravelNode.getQuery()) != null) {
+                String uriString = uri.toString();
+                uri = Uri.parse(uriString + "?" + query);
+            }
+            restNetworkInterface.setResponseInterface(this);
+            restNetworkInterface.execute(
+                    0, uri,
+                    abstractTravelNode.getMethod(),
+                    abstractTravelNode.getHeader(),
+                    abstractTravelNode.getBody(),
+                    abstractTravelNode.getReturnType(),
+                    getTag());
+        } catch (CurieResolverKeyNotFoundException e) {
+            Log.d(TAG, Log.getStackTraceString(e));
         }
-        restNetworkInterface.setResponseInterface(this);
-        restNetworkInterface.execute(
-                0, uri,
-                abstractTravelNode.getMethod(),
-                abstractTravelNode.getHeader(),
-                abstractTravelNode.getBody(),
-                abstractTravelNode.getReturnType(),
-                getTag());
+
     }
 
     private String findUri(
-            String key) {
+            String key) throws CurieResolverKeyNotFoundException {
         String uri = null;
         if (key != null)
             uri = apiUriDeclarationInterface.getHomeUri()

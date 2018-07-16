@@ -8,5 +8,5 @@ import org.json.JSONObject;
 
 public interface CurieResolverInterface {
 
-    String getUri(String key, JSONObject jsonObject);
+    String getUri(String key, JSONObject jsonObject) throws CurieResolverKeyNotFoundException;
 }
