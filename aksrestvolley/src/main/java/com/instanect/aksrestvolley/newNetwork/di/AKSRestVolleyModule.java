@@ -17,7 +17,6 @@ import com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.d
 import com.instanect.aksrestvolley.newNetwork.common.traveller.builder.di.TravellerBuilderModule;
 import com.instanect.aksrestvolley.newNetwork.volley.api.di.VolleyApiModule;
 import com.instanect.aksrestvolley.newNetwork.volley.client.di.UriHttpClientRequestBuilderModule;
-import com.instanect.aksrestvolley.newNetwork.volley.request.di.RequestQueueModule;
 
 import javax.inject.Inject;
 
@@ -45,7 +44,6 @@ public class AKSRestVolleyModule {
     public NetworkService provideNetworkService() {
 
         DaggerScenarioServiceComponent.builder()
-                .requestQueueModule(new RequestQueueModule(context))
                 .uriHttpClientRequestBuilderModule(
                         new UriHttpClientRequestBuilderModule(context))
                 .rESTNetworkApiModule(new RESTNetworkApiModule(context))
