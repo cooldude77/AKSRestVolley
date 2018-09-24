@@ -108,6 +108,8 @@ public class VolleyApi
                     request.post(body, 1);
                 else if (method == HTTPMethods.PUT)
                     request.put(body, 1);
+                else if (method == HTTPMethods.DELETE)
+                    request.delete(1);
                 else
                     request.get(1);
                 break;
@@ -135,6 +137,8 @@ public class VolleyApi
                     requestArray.post(body, 0);
                 else if (method == HTTPMethods.PUT)
                     requestArray.put(body, 1);
+                else if (method == HTTPMethods.DELETE)
+                    requestArray.delete(1);
                 else
                     requestArray.get(1);
                 break;

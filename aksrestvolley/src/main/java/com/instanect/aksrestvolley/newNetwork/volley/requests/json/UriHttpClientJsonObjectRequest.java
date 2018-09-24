@@ -118,5 +118,9 @@ public class UriHttpClientJsonObjectRequest extends Request<JSONObject> {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(this);
     }
+
+    public void delete(int i) {
+        process(i);
+    }
 }
 

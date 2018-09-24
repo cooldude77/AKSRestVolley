@@ -117,5 +117,9 @@ public class UriHttpClientJsonArrayRequest extends Request<JSONArray> {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(this);
     }
+
+    public void delete(int i) {
+        process(i);
+    }
 }
 
