@@ -2,6 +2,8 @@ package com.instanect.aksrestvolley.newNetwork.common.scenario.scenario.service.
 
 import com.instanect.aksrestvolley.newNetwork.di.AKSRestVolleyModule;
 
+import javax.inject.Singleton;
+
 import dagger.Component;
 
 @Component(modules = {ScenarioServiceModule.class})

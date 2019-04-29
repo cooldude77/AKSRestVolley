@@ -35,6 +35,7 @@ public class UriHttpClientStringRequest extends StringRequest {
                                       int method,
                                       String url,
                                       HashMap<String, String> headers,
+                                      HashMap<String, String> postOrPutBody,
                                       Response.Listener<String> listener,
                                       Response.ErrorListener errorListener) {
         super(method, url, listener, errorListener);
@@ -44,6 +45,7 @@ public class UriHttpClientStringRequest extends StringRequest {
         this.method = method;
         this.url = url;
         this.headers = headers;
+        this.postOrPutBody = postOrPutBody;
         this.listener = listener;
         this.errorListener = errorListener;
     }
@@ -60,42 +62,4 @@ public class UriHttpClientStringRequest extends StringRequest {
     }
 
 
-    public void process() {
-        requestQueue.add(this);
-    }
-
-
-    public void post(HashMap<String, String> postBody, Integer noOfTries) {
-
-        this.postOrPutBody = postBody;
-        process(noOfTries);
-    }
-
-    public void put(HashMap<String, String> putBody, Integer noOfTries) {
-
-        this.postOrPutBody = putBody;
-        process(noOfTries);
-    }
-
-    public void get(Integer noOfTries) {
-        Log.d("Instanect-Debug:", getUrl());
-        if (headers != null)
-            Log.d("Instanect-Debug", this.headers.toString());
-        process(noOfTries);
-    }
-
-    private void process(Integer noOfTries) {
-        // if (noOfTries == null) {
-        noOfTries = DefaultRetryPolicy.DEFAULT_MAX_RETRIES;
-        //}
-
-        int socketTimeout = 30000;//30 seconds - change to what you want
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
-                noOfTries,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        );
-        this.setRetryPolicy(policy);
-        RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(this);
-    }
 }

@@ -17,6 +17,7 @@ abstract public class AbstractTravelNodeHandler implements TravelNodeHandlerInte
     protected final NetworkResponseInterface networkResponseInterface;
     protected final TravelNodeHandlerResponseInterface handlerResponseInterface;
     protected final ApiUriDeclarationInterface apiUriDeclarationInterface;
+    private String tag;
     protected final RESTNetworkInterface restNetworkInterface;
 
 
@@ -34,5 +35,24 @@ abstract public class AbstractTravelNodeHandler implements TravelNodeHandlerInte
         this.apiUriDeclarationInterface = apiUriDeclarationInterface;
     }
 
+    public <T> AbstractTravelNodeHandler(
+            RESTNetworkInterface restNetworkInterface,
+            AbstractTravelNode abstractTravelNode,
+            NetworkResponseInterface<T> networkResponseInterface,
+            TravelNodeHandlerResponseInterface handlerResponseInterface,
+            ApiUriDeclarationInterface apiUriDeclarationInterface,
+            String tag) {
 
+        this(restNetworkInterface,abstractTravelNode,networkResponseInterface,handlerResponseInterface,apiUriDeclarationInterface);
+
+        this.tag = tag;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public AbstractTravelNode getTravelNode() {
+        return abstractTravelNode;
+    }
 }

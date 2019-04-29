@@ -37,6 +37,7 @@ public class UriHttpClientJsonObjectRequest extends Request<JSONObject> {
                                           int method,
                                           String uri,// in case of GET, pass the parameters attached in the URL itself
                                           HashMap<String, String> headers,
+                                          HashMap<String, String> body,
                                           Response.Listener<JSONObject> listener,
                                           Response.ErrorListener errorListener
     ) {
@@ -45,6 +46,8 @@ public class UriHttpClientJsonObjectRequest extends Request<JSONObject> {
         this.context = context;
         this.headers = headers;
         this.errorListener = errorListener;
+
+        this.postOrPutBody = body;
     }
 
     @Override
@@ -85,42 +88,5 @@ public class UriHttpClientJsonObjectRequest extends Request<JSONObject> {
         return postOrPutBody;
     }
 
-    public void post(HashMap<String, String> postBody, Integer noOfTries) {
-
-        this.postOrPutBody = postBody;
-        process(noOfTries);
-    }
-
-    public void put(HashMap<String, String> putBody, Integer noOfTries) {
-
-        this.postOrPutBody = putBody;
-        process(noOfTries);
-    }
-
-    public void get(Integer noOfTries) {
-        Log.d("Instanect-Debug:", getUrl());
-        if (headers != null)
-            Log.d("Instanect-Debug", this.headers.toString());
-        process(noOfTries);
-    }
-
-    private void process(Integer noOfTries) {
-        // if (noOfTries == null) {
-        noOfTries = DefaultRetryPolicy.DEFAULT_MAX_RETRIES;
-        //}
-
-        int socketTimeout = 30000;//30 seconds - change to what you want
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
-                noOfTries,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        );
-        this.setRetryPolicy(policy);
-        RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(this);
-    }
-
-    public void delete(int i) {
-        process(i);
-    }
 }
 

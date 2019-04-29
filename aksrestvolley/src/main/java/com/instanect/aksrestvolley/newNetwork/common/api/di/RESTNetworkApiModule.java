@@ -16,12 +16,6 @@ import dagger.Provides;
 @Module(includes = {VolleyApiModule.class})
 public class RESTNetworkApiModule {
 
-    private final Context context;
-
-    public RESTNetworkApiModule(Context context) {
-
-        this.context = context;
-    }
 
     @Provides
     public RESTNetworkApi provideRESTNetworkApi(VolleyApi volleyApi) {

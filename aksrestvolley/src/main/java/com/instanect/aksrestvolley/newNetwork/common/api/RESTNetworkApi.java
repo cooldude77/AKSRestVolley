@@ -8,9 +8,9 @@ import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLib
 import com.instanect.aksrestvolley.newNetwork.common.external.ExternalNetworkLibraryResponseInterface;
 import com.instanect.networkcommon.NetworkResponseInterface;
 
-import junit.framework.Assert;
-
 import java.util.HashMap;
+
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Bridge between External library like volley and app rest module
@@ -37,6 +37,19 @@ public class RESTNetworkApi implements RESTNetworkInterface,
             HashMap<String, String> header,
             HashMap<String, String> body,
             int returnType) {
+
+        execute(requestId, uri, method, header, body, returnType, null);
+    }
+
+    @Override
+    public void execute(
+            int requestId,
+            Uri uri,
+            int method,
+            HashMap<String, String> header,
+            HashMap<String, String> body,
+            int returnType,
+            String tag) {
         this.requestId = requestId;
 
         externalNetworkLibraryInterface
@@ -46,26 +59,27 @@ public class RESTNetworkApi implements RESTNetworkInterface,
                         header,
                         body,
                         returnType,
-                        this);
+                        this,
+                        tag);
 
     }
 
     @Override
     public void setResponseInterface(RESTNetworkResponseInterface responseInterface) {
-        Assert.assertNotNull(responseInterface);
+        assertNotNull(responseInterface);
         this.restNetworkResponseInterface = responseInterface;
     }
 
     @Override
     public <T> void onSuccess(NetworkResponseInterface<T> networkResponse) {
-        Assert.assertNotNull(restNetworkResponseInterface);
+        assertNotNull(restNetworkResponseInterface);
         restNetworkResponseInterface.onSuccess(networkResponse, requestId);
 
     }
 
     @Override
     public void onError(String error, int errorCode) {
-        Assert.assertNotNull(restNetworkResponseInterface);
+        assertNotNull(restNetworkResponseInterface);
         restNetworkResponseInterface.onError(error, errorCode, requestId);
     }
 

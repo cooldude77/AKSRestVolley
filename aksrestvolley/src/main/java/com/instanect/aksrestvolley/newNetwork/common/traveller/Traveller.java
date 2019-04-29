@@ -19,6 +19,7 @@ public class Traveller implements
     private TravelMap travelMap;
     private TravelNodeHandlerService travelNodeHandlerService;
     private TravellerResponseInterface travellerResponseInterface;
+    private String tag;
 
     public Traveller(
             TravelMap travelMap,
@@ -32,6 +33,13 @@ public class Traveller implements
     }
 
     public <T> void travel(NetworkResponseInterface<T> networkResponse) {
+
+
+        travel(networkResponse, null);
+    }
+
+    public <T> void travel(NetworkResponseInterface<T> networkResponse, String tag) {
+        this.tag = tag;
 
         if (abortTravel) {
             resetAbortTravelFlag();
@@ -48,7 +56,9 @@ public class Traveller implements
 
         // get handler
         TravelNodeHandlerInterface travelNodeHandlerInterface
-                = travelNodeHandlerService.getHandler(travelNode, networkResponse, this);
+                = travelNodeHandlerService.getHandler(travelNode,
+                networkResponse, this,
+                tag);
 
         // handle
         travelNodeHandlerInterface.handle();
@@ -66,7 +76,7 @@ public class Traveller implements
 
     @Override
     public <T> void onSuccess(NetworkResponseInterface<T> networkResponse) {
-        travel(networkResponse);
+        travel(networkResponse,tag);
     }
 
     public void abort() {

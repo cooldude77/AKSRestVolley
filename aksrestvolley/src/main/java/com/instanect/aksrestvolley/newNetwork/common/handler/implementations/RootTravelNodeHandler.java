@@ -19,21 +19,34 @@ public class RootTravelNodeHandler
         implements RESTNetworkResponseInterface {
 
 
-    private final RootTravelNode rootTravelNode;
-
     public <T> RootTravelNodeHandler(
-            RESTNetworkInterface restNetworkInterface,
             ApiUriDeclarationInterface apiUriDeclarationInterface,
-            RootTravelNode rootTravelNode,
             NetworkResponseInterface<T> networkResponse,
+            RESTNetworkInterface restNetworkInterface,
+            RootTravelNode rootTravelNode,
             TravelNodeHandlerResponseInterface handlerResponseInterface) {
-        super(
+        this(
+                apiUriDeclarationInterface,
+                networkResponse,
                 restNetworkInterface,
                 rootTravelNode,
-                networkResponse,
-                handlerResponseInterface,
-                apiUriDeclarationInterface);
-        this.rootTravelNode = rootTravelNode;
+                null,
+                handlerResponseInterface);
+    }
+
+    public <T> RootTravelNodeHandler(
+            ApiUriDeclarationInterface apiUriDeclarationInterface,
+            NetworkResponseInterface<T> networkResponseInterface,
+            RESTNetworkInterface restNetworkApiInterface,
+            RootTravelNode rootTravelNode,
+            String tag,
+            TravelNodeHandlerResponseInterface travelNodeHandlerResponseInterface
+    ) {
+        super(restNetworkApiInterface,
+                rootTravelNode, networkResponseInterface,
+                travelNodeHandlerResponseInterface,
+                apiUriDeclarationInterface, tag);
+
     }
 
 
@@ -45,10 +58,11 @@ public class RootTravelNodeHandler
         restNetworkInterface.execute(
                 0,
                 uri,
-                rootTravelNode.getMethod(),
-                rootTravelNode.getHeader(),
+                ((RootTravelNode)getTravelNode()).getMethod(),
+                ((RootTravelNode)getTravelNode()).getHeader(),
                 null,
-                rootTravelNode.getReturnType()
+                ((RootTravelNode)getTravelNode()).getReturnType(),
+                getTag()
         );
 
     }
