@@ -4,9 +4,11 @@ import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.Key
 import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.RootTravelNodeHandler;
 import com.instanect.aksrestvolley.newNetwork.common.handler.implementations.UriTravelNodeHandler;
 import com.instanect.aksrestvolley.newNetwork.common.handler.interfaces.TravelNodeHandlerInterface;
+import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyDELETETravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyGETTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyPOSTTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyPUTTravelNode;
+import com.instanect.aksrestvolley.newNetwork.common.node.http.uriNodes.UriDELETETravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.uriNodes.UriGETTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.uriNodes.UriPUTTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.implementations.RootTravelNode;
@@ -25,11 +27,12 @@ public class TravellerNodeToHandlerMatcher {
             return RootTravelNodeHandler.class;
         else if (travelNodeInterfaceClass.equals(KeyGETTravelNode.class)
                 || travelNodeInterfaceClass.equals(KeyPUTTravelNode.class)
-                || travelNodeInterfaceClass.equals(KeyPOSTTravelNode.class))
+                || travelNodeInterfaceClass.equals(KeyPOSTTravelNode.class)
+                || travelNodeInterfaceClass.equals(KeyDELETETravelNode.class))
             return KeyTravelNodeHandler.class;
         else if (travelNodeInterfaceClass.equals(UriGETTravelNode.class)
                 || travelNodeInterfaceClass.equals(UriPUTTravelNode.class)
-                || travelNodeInterfaceClass.equals(UriPUTTravelNode.class))
+                || travelNodeInterfaceClass.equals(UriDELETETravelNode.class))
             return UriTravelNodeHandler.class;
 
 
