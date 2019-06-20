@@ -4,6 +4,7 @@ package com.instanect.aksrestvolley.newNetwork.common.node.factory;
 import android.net.Uri;
 
 import com.instanect.aksrestvolley.newNetwork.common.node.constants.NetworkCallReturnType;
+import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyDELETETravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyGETTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyPOSTTravelNode;
 import com.instanect.aksrestvolley.newNetwork.common.node.http.keyBased.KeyPUTTravelNode;
@@ -36,11 +37,13 @@ public class TravelNodeFactory {
             return new KeyPOSTTravelNode(key, uriQuery, header, body, returnType);
         else if (travelNodeClass.equals(KeyPUTTravelNode.class))
             return new KeyPUTTravelNode(key, uriQuery, header, body, returnType);
+        else if (travelNodeClass.equals(KeyDELETETravelNode.class))
+            return new KeyDELETETravelNode(key, uriQuery, header, body, returnType);
         else if (travelNodeClass.equals(UriGETTravelNode.class))
             return new UriGETTravelNode(uri, uriQuery, header, returnType);
         else if (travelNodeClass.equals(UriPUTTravelNode.class))
             return new UriPUTTravelNode(uri, uriQuery, header, body, returnType);
-        else if (travelNodeClass.equals(UriGETTravelNode.class))
+        else if (travelNodeClass.equals(UriPOSTTravelNode.class))
             return new UriPOSTTravelNode(uri, uriQuery, header, body, returnType);
 
         throw new IllegalArgumentException("No such travel Interface class");

@@ -14,8 +14,9 @@ public class KeyDELETETravelNode extends AbstractKeyTravelNode {
     public <T> KeyDELETETravelNode(String nextIdentifierKey,
                                    String query,
                                    HashMap<String, String> header,
+                                   HashMap<String, String> body,
                                    int returnType) {
-        super(nextIdentifierKey, HTTPMethods.DELETE, query, header, null, returnType);
+        super(nextIdentifierKey, HTTPMethods.DELETE, query, header, body, returnType);
 
     }
 
