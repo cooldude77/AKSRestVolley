@@ -39,7 +39,7 @@ ext {
     siteUrl = 'https://github.com/cooldude77/AKSRestVolley'
     gitUrl = 'https://github.com/cooldude77/AKSRestVolley.git'
 
-    libraryVersion = '0.1.2'
+    libraryVersion = '1.0.0'
 
     developerId = 'cooldude77'
     developerName = 'Ashvini'
@@ -61,13 +61,13 @@ dependencies {
     implementation 'com.instanect.accountcommon:accountcommon:0.0.16'
     implementation 'com.instanect.networkcommon:networkcommon:0.0.5'
     // Dagger
-    implementation 'com.google.dagger:dagger:2.18'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.18'
+    implementation 'com.google.dagger:dagger:2.23'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.23'
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'com.google.dagger:dagger:2.18'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.18'
+    implementation 'com.google.dagger:dagger:2.23'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.23'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
