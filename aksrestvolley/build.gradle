@@ -58,8 +58,8 @@ dependencies {
     // Google //
     // Volley
     implementation 'com.android.volley:volley:1.1.0'
-    implementation 'com.instanect.accountcommon:accountcommon:0.0.16'
-    implementation 'com.instanect.networkcommon:networkcommon:0.0.5'
+    implementation 'com.instanect.accountcommon:accountcommon:1.0.0'
+    implementation 'com.instanect.networkcommon:networkcommon:1.0.0'
     // Dagger
     implementation 'com.google.dagger:dagger:2.23'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.23'
